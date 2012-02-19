@@ -22,19 +22,16 @@ namespace TopDevLinks.Tests.LearningTests
         {
             var posts = Database.GetCollection<Post>("posts");
 
-            var post = new Post
-                           {
-                               Links = new List<Link>
-                                           {
-                                               new Link {Uri = new Uri("http://www.google.com"), Title = "Google"},
-                                               new Link {Uri = new Uri("http://www.facebook.com"), Title = "Facebook"}
-                                           },
-                           };
+            var post = new Post();
+            post.AddLink(new Link(new Uri("http://www.google.com"), "Google"));
+            post.AddLink(new Link(new Uri("http://www.facebook.com"), "Facebook"));
 
             posts.Insert(post);
 
             var retrievedPost = posts.Find(Query.EQ("Published", false)).ElementAt(0);
-            Assert.IsNotNull(retrievedPost);
+            Assert.AreEqual(post.Id, retrievedPost.Id);
+            Assert.AreEqual(post.Links.ElementAt(0), retrievedPost.Links.ElementAt(0));
+            Assert.AreEqual(post.Links.ElementAt(1), retrievedPost.Links.ElementAt(1));
         }
        
     }
