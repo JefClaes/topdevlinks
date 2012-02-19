@@ -4,7 +4,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using NUnit.Framework;
-using TopDevLinks.Models.Documents;
+using TopDevLinks.Models.Entities;
 
 namespace TopDevLinks.Tests.LearningTests
 {
@@ -32,6 +32,12 @@ namespace TopDevLinks.Tests.LearningTests
             Assert.AreEqual(post.Id, retrievedPost.Id);
             Assert.AreEqual(post.Links.ElementAt(0), retrievedPost.Links.ElementAt(0));
             Assert.AreEqual(post.Links.ElementAt(1), retrievedPost.Links.ElementAt(1));
+
+            retrievedPost.AddLink(new Link(new Uri("http://www.bing.com"), "Bing"));
+            posts.Save(retrievedPost);
+
+            post = posts.Find(Query.EQ("Published", false)).ElementAt(0);
+            Assert.AreEqual(post.Links.ElementAt(2), retrievedPost.Links.ElementAt(2));
         }
        
     }

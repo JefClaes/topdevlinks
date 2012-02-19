@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 
-namespace TopDevLinks.Models.Documents
+namespace TopDevLinks.Models.Entities
 {
     public class Post
     {
@@ -11,7 +11,7 @@ namespace TopDevLinks.Models.Documents
         public bool Published { get; set; }
         public DateTime PublishDate { get; set; }
 
-        protected List<Link> TypedLinks { get { return (List<Link>) Links; } } 
+        private List<Link> TypedLinks { get { return (List<Link>)Links; } } 
 
         public Post()
         {

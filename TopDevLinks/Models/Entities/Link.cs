@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TopDevLinks.Models.Documents
+namespace TopDevLinks.Models.Entities
 {
     public class Link : IEquatable<Link>
     {
