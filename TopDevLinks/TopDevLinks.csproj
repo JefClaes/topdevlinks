@@ -130,6 +130,7 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Link.cs" />
     <Compile Include="Models\Entities\Post.cs" />
+    <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

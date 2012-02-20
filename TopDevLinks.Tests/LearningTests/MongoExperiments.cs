@@ -23,8 +23,8 @@ namespace TopDevLinks.Tests.LearningTests
             var posts = Database.GetCollection<Post>("posts");
 
             var post = new Post();
-            post.AddLink(new Link(new Uri("http://www.google.com"), "Google", ObjectId.GenerateNewId()));
-            post.AddLink(new Link(new Uri("http://www.facebook.com"), "Facebook", ObjectId.GenerateNewId()));
+            post.AddLink(new Link(new Uri("http://www.google.com"), "Google", ObjectId.GenerateNewId(), ObjectId.GenerateNewId()));
+            post.AddLink(new Link(new Uri("http://www.facebook.com"), "Facebook", ObjectId.GenerateNewId(), ObjectId.GenerateNewId()));
 
             posts.Insert(post);
 
@@ -33,7 +33,7 @@ namespace TopDevLinks.Tests.LearningTests
             Assert.AreEqual(post.Links.ElementAt(0), retrievedPost.Links.ElementAt(0));
             Assert.AreEqual(post.Links.ElementAt(1), retrievedPost.Links.ElementAt(1));
 
-            retrievedPost.AddLink(new Link(new Uri("http://www.bing.com"), "Bing", ObjectId.GenerateNewId()));
+            retrievedPost.AddLink(new Link(new Uri("http://www.bing.com"), "Bing", ObjectId.GenerateNewId(), ObjectId.GenerateNewId()));
             posts.Save(retrievedPost);
 
             post = posts.Find(Query.EQ("Published", false)).ElementAt(0);
