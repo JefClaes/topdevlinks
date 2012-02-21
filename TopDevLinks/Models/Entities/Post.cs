@@ -4,9 +4,8 @@ using MongoDB.Bson;
 
 namespace TopDevLinks.Models.Entities
 {
-    public class Post
+    public class Post : Entity
     {
-        public ObjectId Id { get; private set; }
         public IEnumerable<Link> Links { get; private set; }
         public bool Published { get; set; }
         public DateTime PublishDate { get; set; }

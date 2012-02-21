@@ -1,10 +1,7 @@
-﻿using MongoDB.Bson;
-
-namespace TopDevLinks.Models.Entities
+﻿namespace TopDevLinks.Models.Entities
 {
-    public class Category
+    public class Category : Entity
     {
-        public ObjectId Id { get; private set; }
         public string Name { get; set; }
         public int Priority { get; set; }
     }
