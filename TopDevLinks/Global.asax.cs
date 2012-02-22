@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TopDevLinks.Infrastructure;
 
 namespace TopDevLinks
 {
@@ -43,7 +44,17 @@ namespace TopDevLinks
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
+            BundleTable.Bundles.Add(BuildBootstrapBundle());
             BundleTable.Bundles.RegisterTemplateBundles();
+        }
+
+        private Bundle BuildBootstrapBundle()
+        {
+            var bootstrapBundle = new Bundle("~/Content/bootstrap/css", new CssMinify());
+            bootstrapBundle.AddDirectory("~/Content/bootstrap", "*.css", searchSubdirectories: false, throwIfNotExist: true);
+            bootstrapBundle.Orderer = new BootstrapBundleOrderer();
+
+            return bootstrapBundle;
         }
     }
 }
