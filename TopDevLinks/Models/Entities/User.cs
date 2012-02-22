@@ -2,9 +2,8 @@
 
 namespace TopDevLinks.Models.Entities
 {
-    public class User
+    public class User : Entity
     {
-        public ObjectId Id { get; private set; }
         public string Login { get; private set; }
 
         // TODO: add hashed password and salt

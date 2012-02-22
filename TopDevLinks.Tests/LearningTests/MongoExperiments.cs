@@ -9,6 +9,7 @@ using TopDevLinks.Models.Entities;
 namespace TopDevLinks.Tests.LearningTests
 {
     [TestFixture]
+    [Explicit]
     public class MongoExperiments : MongoDbFixture
     {
         [SetUp]
