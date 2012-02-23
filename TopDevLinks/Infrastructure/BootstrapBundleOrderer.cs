@@ -11,11 +11,18 @@ namespace TopDevLinks.Infrastructure
     {
         public IEnumerable<FileInfo> OrderFiles(BundleContext context, IEnumerable<FileInfo> files)
         {
-            return new List<FileInfo>()
-            {
-                files.First(f => f.Name == "bootstrap.css"),
-                files.First(f => f.Name == "bootstrap-responsive.css")
-            };
+            if (files.Count() > 2)
+                throw new NotSupportedException("I can only handle two files in this bundle: bootstrap.css and bootstrap-responsive.css");
+
+            var bootstrap = files.FirstOrDefault(f => f.Name == "bootstrap.css");
+            var bootstrapResponsive = files.First(f => f.Name == "bootstrap-responsive.css");
+
+            if (bootstrap == null)
+                throw new NullReferenceException("Can't find bootstrap.css.");
+            if (bootstrapResponsive == null)
+                throw new NullReferenceException("Can't find bootstrap-responsive.css");
+
+            return new List<FileInfo>() { bootstrap, bootstrapResponsive };
         }
     }
 }
