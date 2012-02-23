@@ -64,6 +64,7 @@ namespace TopDevLinks
             var bootstrapBundle = new Bundle("~/Content/bootstrap/css", new CssMinify());
             bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap.css", true);
             bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap-responsive.css", true);
+            bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap-custom.css", true);
 
             return bootstrapBundle;
         }
