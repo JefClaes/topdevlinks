@@ -8,7 +8,7 @@ namespace TopDevLinks.Models.Entities
     {
         public IEnumerable<Link> Links { get; private set; }
         public bool Published { get; set; }
-        public DateTime PublishDate { get; set; }
+        public DateTime? PublishDate { get; set; }
 
         private List<Link> TypedLinks { get { return (List<Link>)Links; } } 
 
