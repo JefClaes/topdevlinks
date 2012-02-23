@@ -128,7 +128,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\BootstrapBundleOrderer.cs" />
     <Compile Include="Infrastructure\EntityStore.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
