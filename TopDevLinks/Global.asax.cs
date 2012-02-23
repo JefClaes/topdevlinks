@@ -52,8 +52,8 @@ namespace TopDevLinks
         private Bundle BuildBootstrapBundle()
         {
             var bootstrapBundle = new Bundle("~/Content/bootstrap/css", new CssMinify());
-            bootstrapBundle.AddDirectory("~/Content/bootstrap", "*.css", searchSubdirectories: false, throwIfNotExist: false);
-            bootstrapBundle.Orderer = new BootstrapBundleOrderer();
+            bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap.css", true);
+            bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap-responsive.css", true);
 
             return bootstrapBundle;
         }
