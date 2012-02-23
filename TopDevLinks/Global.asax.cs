@@ -45,9 +45,9 @@ namespace TopDevLinks
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
+            BundleTable.Bundles.Add(BuildBootstrapCssBundle());
             //TODO: bootstrap.js has a dependency on jQuery 1.7.1
-            //BundleTable.Bundles.Add(BuildBootstrapCssBundle());
-            BundleTable.Bundles.Add(BuildBootstrapJsBundle());
+            //BundleTable.Bundles.Add(BuildBootstrapJsBundle());
             BundleTable.Bundles.RegisterTemplateBundles();            
         }
 
