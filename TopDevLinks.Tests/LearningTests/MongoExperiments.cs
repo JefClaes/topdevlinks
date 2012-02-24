@@ -39,6 +39,6 @@ namespace TopDevLinks.Tests.LearningTests
 
             post = posts.Find(Query.EQ("Published", false)).ElementAt(0);
             Assert.AreEqual(post.Links.ElementAt(2), retrievedPost.Links.ElementAt(2));
-        }
+        }       
     }
 }
