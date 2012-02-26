@@ -44,16 +44,15 @@ namespace TopDevLinks
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-
+                        
+            BundleTable.Bundles.RegisterTemplateBundles();
             BundleTable.Bundles.Add(BuildBootstrapCssBundle());
-            //TODO: bootstrap.js has a dependency on jQuery 1.7.1
-            //BundleTable.Bundles.Add(BuildBootstrapJsBundle());
-            BundleTable.Bundles.RegisterTemplateBundles();            
+            BundleTable.Bundles.Add(BuildBootstrapJsBundle());
         }
 
         private Bundle BuildBootstrapJsBundle()
         {
-            var bootstrapBundle = new Bundle("~/Scripts/bootstrap/js", new JsMinify());
+            var bootstrapBundle = new Bundle("~/Scripts/bootstrap", new JsMinify());
             bootstrapBundle.AddFile("~/Scripts/bootstrap.js");
 
             return bootstrapBundle;
