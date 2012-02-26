@@ -12,5 +12,10 @@ namespace TopDevLinks.Controllers
         {
             return View();
         }
+
+        public ActionResult Archive(DateTime? date)
+        {
+            return View();
+        }
     }
 }

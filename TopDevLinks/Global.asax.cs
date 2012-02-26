@@ -31,6 +31,7 @@ namespace TopDevLinks
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            routes.MapRoute("Archive", "Archive/{date}", new { controller = "Home", action = "Archive" });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
