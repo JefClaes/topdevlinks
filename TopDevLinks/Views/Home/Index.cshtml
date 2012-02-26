@@ -2,39 +2,44 @@
     ViewBag.Title = "TopDevLinks";
 }
 
-<section>
-    <div class="page-header">
-        <h1>1/2/2011</h1>
-        <small>Meta?</small>
-    </div>
-    <div class="row">
-        <div class="span12">
-            <h3>node.js</h3>
-            <ul>
-                <li><a href="#">Some link</a></li>
-                <li><a href="#">Another link</a></li>
-                <li><a href="#">More links</a></li>
-            </ul>
+@for (var i = 0; i < 5; i++)
+{
+
+    <section>
+        <div class="page-header">
+            <h1>@DateTime.Now.AddDays(i).ToShortDateString()</h1>
+            <small>Meta?</small>
         </div>
-    </div>
-    <div class="row">
-        <div class="span12">
-            <h3>.NET</h3>
-            <ul>
-                <li><a href="#">Some link</a></li>
-                <li><a href="#">Another link</a></li>
-                <li><a href="#">More links</a></li>
-            </ul>            
+        <div class="row">
+            <div class="span12">
+                <h3>node.js</h3>
+                <ul>
+                    <li><a href="#">Some link</a></li>
+                    <li><a href="#">Another link</a></li>
+                    <li><a href="#">More links</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="span12">
-            <h3>JavaScript</h3>
-            <ul>
-                <li><a href="#">Some link</a></li>
-                <li><a href="#">Another link</a></li>
-                <li><a href="#">More links</a></li>
-            </ul>
+        <div class="row">
+            <div class="span12">
+                <h3>.NET</h3>
+                <ul>
+                    <li><a href="#">Some link</a></li>
+                    <li><a href="#">Another link</a></li>
+                    <li><a href="#">More links</a></li>
+                </ul>            
+            </div>
         </div>
-    </div>
-</section>    
+        <div class="row">
+            <div class="span12">
+                <h3>JavaScript</h3>
+                <ul>
+                    <li><a href="#">Some link</a></li>
+                    <li><a href="#">Another link</a></li>
+                    <li><a href="#">More links</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>    
+    
+}
