@@ -32,6 +32,7 @@ namespace TopDevLinks
             );
 
             routes.MapRoute("Archive", "Archive/{date}", new { controller = "Home", action = "Archive" });
+            routes.MapRoute("About", "About", new { controller = "Home", action = "About" });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
