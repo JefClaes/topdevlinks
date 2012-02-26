@@ -1,8 +1,8 @@
-﻿using System.ServiceModel.Syndication;
+﻿using System;
+using System.ServiceModel.Syndication;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
-using System;
 
 namespace TopDevLinks.Infrastructure.Web
 {
@@ -21,10 +21,8 @@ namespace TopDevLinks.Infrastructure.Web
 
         protected override void WriteFile(HttpResponseBase response)
         {
-            using (var writer = XmlWriter.Create(response.OutputStream))
-            {
-                _feed.GetRss20Formatter().WriteTo(writer);
-            }
+            using (var writer = XmlWriter.Create(response.OutputStream))            
+                _feed.GetRss20Formatter().WriteTo(writer);            
         }
     }
 }
