@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using System.Configuration;
+using MongoDB.Driver;
 
 namespace TopDevLinks.Tests
 {
@@ -12,8 +13,8 @@ namespace TopDevLinks.Tests
             {
                 if (_database == null)
                 {
-                    var server = MongoServer.Create("mongodb://localhost");
-                    _database = server.GetDatabase("topdevlinks_test");
+                    var server = MongoServer.Create(ConfigurationManager.AppSettings["server"]);
+                    _database = server.GetDatabase(ConfigurationManager.AppSettings["database"]);
                 }
 
                 return _database;

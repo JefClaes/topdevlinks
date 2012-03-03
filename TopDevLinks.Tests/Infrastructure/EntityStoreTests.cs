@@ -12,7 +12,7 @@ namespace TopDevLinks.Tests.Infrastructure
     [TestFixture]
     public class EntityStoreTests : MongoDbFixture
     {
-        private EntityStore _entityStore = new EntityStore("mongodb://localhost", "topdevlinks_test");
+        private EntityStore _entityStore = new EntityStore();
 
         [SetUp]
         public void SetUp()

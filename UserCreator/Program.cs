@@ -18,8 +18,7 @@ namespace UserCreator
             var user = new User(args[0], args[1]);
             user.SetPassword(args[2]);
 
-            var entityStore = new EntityStore(ConfigurationManager.AppSettings["server"],
-                                              ConfigurationManager.AppSettings["database"]);
+            var entityStore = new EntityStore();
 
             entityStore.Save(user);
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -8,34 +6,8 @@ using TopDevLinks.Models.Entities;
 
 namespace TopDevLinks.Infrastructure
 {
-    public class EntityStore
+    public class EntityStore : MongoContext
     {
-        // TODO: move this to a seperate class because we'll also need this for our Query objects
-        private static Dictionary<Type, string> _collectionMap = new Dictionary<Type, string>
-        {
-            // add a Type with its collection name here for every Document stored in a collection
-            { typeof(Post), "posts" },
-            { typeof(User), "users" },
-            { typeof(Category), "categories" }
-        };
-
-        private MongoDatabase _database;
-
-        // TODO: get these values from web.config
-        public EntityStore() : this("mongodb://localhost", "topdevlinks")
-        {
-        }
-
-        public EntityStore(string server, string databaseName)
-        {
-            _database = MongoServer.Create(server).GetDatabase(databaseName);
-        }
-
-        private MongoCollection<T> GetCollection<T>()
-        {
-            return _database.GetCollection<T>(_collectionMap[typeof(T)]);
-        }
-
         public void Save<T>(T entity) where T : Entity
         {
             GetCollection<T>().Save(entity, SafeMode.True);
