@@ -137,6 +137,7 @@
     <Compile Include="Infrastructure\EntityStore.cs" />
     <Compile Include="Infrastructure\MongoContext.cs" />
     <Compile Include="Infrastructure\MongoMembershipProvider.cs" />
+    <Compile Include="Infrastructure\Query.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Models\Entities\Post.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\FindUserByLoginQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\bootstrap-custom.css" />

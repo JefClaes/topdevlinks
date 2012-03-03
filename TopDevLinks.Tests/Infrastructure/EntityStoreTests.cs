@@ -10,7 +10,7 @@ using TopDevLinks.Models.Entities;
 namespace TopDevLinks.Tests.Infrastructure
 {
     [TestFixture]
-    public class EntityStoreTests : MongoDbFixture
+    public class EntityStoreTests : MongoContext
     {
         private EntityStore _entityStore = new EntityStore();
 

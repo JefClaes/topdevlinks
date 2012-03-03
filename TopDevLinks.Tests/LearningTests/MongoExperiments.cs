@@ -3,13 +3,14 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using NUnit.Framework;
+using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 
 namespace TopDevLinks.Tests.LearningTests
 {
     [TestFixture]
     [Explicit]
-    public class MongoExperiments : MongoDbFixture
+    public class MongoExperiments : MongoContext
     {
         [SetUp]
         public void SetUp()

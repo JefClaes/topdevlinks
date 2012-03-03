@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,9 +59,10 @@
   <ItemGroup>
     <Compile Include="Entities\UserTests.cs" />
     <Compile Include="Infrastructure\EntityStoreTests.cs" />
+    <Compile Include="Infrastructure\MongoMembershipProviderTests.cs" />
     <Compile Include="LearningTests\MongoExperiments.cs" />
-    <Compile Include="MongoDbFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\FindUserByLoginQueryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

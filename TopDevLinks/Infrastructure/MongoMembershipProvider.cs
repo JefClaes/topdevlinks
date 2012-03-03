@@ -1,4 +1,5 @@
 ﻿using System.Web.Security;
+using TopDevLinks.Queries;
 
 namespace TopDevLinks.Infrastructure
 {
@@ -6,7 +7,8 @@ namespace TopDevLinks.Infrastructure
     {
         public override bool ValidateUser(string username, string password)
         {
-            throw new System.NotImplementedException();
+            var user = new FindUserByLoginQuery(username).Execute();
+            return user != null && user.CheckPassword(password);
         }
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
