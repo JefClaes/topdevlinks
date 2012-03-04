@@ -129,8 +129,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\Api\UsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\Representations\UserRepresentation.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UsersIndexViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,6 +141,7 @@
     </Compile>
     <Compile Include="Infrastructure\EntityStore.cs" />
     <Compile Include="Infrastructure\MongoContext.cs" />
+    <Compile Include="Infrastructure\MongoContextApiController.cs" />
     <Compile Include="Infrastructure\MongoContextController.cs" />
     <Compile Include="Infrastructure\Query.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />
