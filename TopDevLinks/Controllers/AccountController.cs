@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using TopDevLinks.Models.ViewModels;
+using TopDevLinks.Queries;
 
 namespace TopDevLinks.Controllers
 {
@@ -16,7 +17,8 @@ namespace TopDevLinks.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                var user = new FindUserByLoginQuery(model.UserName).Execute();
+                if (user != null && user.CheckPassword(model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
@@ -27,7 +29,7 @@ namespace TopDevLinks.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                
+
                 ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
 
