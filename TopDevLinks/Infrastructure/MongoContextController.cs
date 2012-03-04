@@ -7,6 +7,7 @@ namespace TopDevLinks.Infrastructure
     {
         private MongoContext _mongoContext;
         private EntityStore _entityStore;
+        private Func<dynamic, dynamic> _executeQueryFunc;  
 
         public MongoContext MongoContext
         {
@@ -19,10 +20,27 @@ namespace TopDevLinks.Infrastructure
             get { return _entityStore ?? (_entityStore = new EntityStore(MongoContext)); }
         }
 
+        public Func<dynamic, dynamic> ExecuteQueryFunc
+        {
+            get
+            {
+                if (_executeQueryFunc == null)
+                {
+                    _executeQueryFunc = query =>
+                    {
+                        query.MongoContext = MongoContext;
+                        return query.Execute();
+                    };
+                }
+
+                return _executeQueryFunc;
+            }
+            set { _executeQueryFunc = value; }
+        }
+
         protected TResult Execute<TResult>(Query<TResult> query)
         {
-            query.MongoContext = MongoContext;
-            return query.Execute();
+            return (TResult)ExecuteQueryFunc(query);
         }
     }
 }
