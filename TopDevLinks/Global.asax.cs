@@ -51,6 +51,7 @@ namespace TopDevLinks
             BundleTable.Bundles.RegisterTemplateBundles();
             BundleTable.Bundles.Add(BuildBootstrapCssBundle());
             BundleTable.Bundles.Add(BuildBootstrapJsBundle());
+            BundleTable.Bundles.Add(BuildBackboneJsBundle());
         }
 
         private Bundle BuildBootstrapJsBundle()
@@ -69,6 +70,15 @@ namespace TopDevLinks
             bootstrapBundle.AddFile("~/Content/bootstrap/bootstrap-custom.css", true);
 
             return bootstrapBundle;
+        }
+
+        private Bundle BuildBackboneJsBundle()
+        {
+            var backboneBundle = new Bundle("~/Scripts/backbone", new JsMinify());
+            backboneBundle.AddFile("~/Scripts/underscore.js", true);
+            backboneBundle.AddFile("~/Scripts/backbone.js", true);
+
+            return backboneBundle;
         }
     }
 }
