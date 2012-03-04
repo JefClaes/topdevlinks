@@ -1,0 +1,24 @@
+﻿@model TopDevLinks.Areas.Admin.Models.ViewModels.UsersIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<table>
+    <thead>
+        <tr>
+            <td>User</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.EmailAddress</td>
+            </tr>
+        }
+    </tbody>
+</table>
