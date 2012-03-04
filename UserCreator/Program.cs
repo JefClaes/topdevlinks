@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 
@@ -18,7 +17,7 @@ namespace UserCreator
             var user = new User(args[0], args[1]);
             user.SetPassword(args[2]);
 
-            var entityStore = new EntityStore();
+            var entityStore = new EntityStore(new MongoContext());
 
             entityStore.Save(user);
         }

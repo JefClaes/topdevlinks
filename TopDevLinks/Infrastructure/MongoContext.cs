@@ -6,7 +6,7 @@ using TopDevLinks.Models.Entities;
 
 namespace TopDevLinks.Infrastructure
 {
-    public abstract class MongoContext
+    public class MongoContext
     {
         private static readonly Dictionary<Type, string> _collectionMap = new Dictionary<Type, string>
         {
@@ -16,18 +16,26 @@ namespace TopDevLinks.Infrastructure
             { typeof(Category), "categories" }
         };
 
-        protected MongoDatabase Database { get; private set; }
+        private string _server;
+        private string _databaseName;
+        private MongoDatabase _database;
 
-        protected MongoContext(string server, string databaseName)
+        public MongoDatabase Database
         {
-            Database = MongoServer.Create(server).GetDatabase(databaseName);
+            get { return _database ?? (_database = MongoServer.Create(_server).GetDatabase(_databaseName)); }
         }
 
-        protected MongoContext() : this(ConfigurationManager.AppSettings["server"], ConfigurationManager.AppSettings["database"])
+        public MongoContext(string server, string databaseName)
+        {
+            _server = server;
+            _databaseName = databaseName;
+        }
+
+        public MongoContext() : this(ConfigurationManager.AppSettings["server"], ConfigurationManager.AppSettings["database"])
         {
         }
 
-        protected MongoCollection<T> GetCollection<T>()
+        public MongoCollection<T> GetCollection<T>()
         {
             return Database.GetCollection<T>(_collectionMap[typeof(T)]);
         }

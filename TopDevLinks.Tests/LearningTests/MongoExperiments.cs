@@ -10,18 +10,20 @@ namespace TopDevLinks.Tests.LearningTests
 {
     [TestFixture]
     [Explicit]
-    public class MongoExperiments : MongoContext
+    public class MongoExperiments
     {
+        private MongoContext _mongoContext = new MongoContext();
+
         [SetUp]
         public void SetUp()
         {
-            Database.GetCollection("posts").Drop();
+            _mongoContext.Database.GetCollection("posts").Drop();
         }
 
         [Test]
         public void can_create_post_document()
         {
-            var posts = Database.GetCollection<Post>("posts");
+            var posts = _mongoContext.Database.GetCollection<Post>("posts");
 
             var post = new Post();
             post.AddLink(new Link(new Uri("http://www.google.com"), "Google", ObjectId.GenerateNewId(), ObjectId.GenerateNewId()));

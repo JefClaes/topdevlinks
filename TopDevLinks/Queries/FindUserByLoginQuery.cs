@@ -17,7 +17,7 @@ namespace TopDevLinks.Queries
 
         public override User Execute()
         {
-            return GetCollection<User>().Find(Query.EQ("Login", BsonValue.Create(_login))).FirstOrDefault();
+            return MongoContext.GetCollection<User>().Find(Query.EQ("Login", BsonValue.Create(_login))).FirstOrDefault();
         }
     }
 }

@@ -1,11 +1,12 @@
 using System.Web.Mvc;
 using System.Web.Security;
+using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.ViewModels;
 using TopDevLinks.Queries;
 
 namespace TopDevLinks.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : MongoContextController
     {
         public ActionResult Login()
         {
@@ -17,7 +18,7 @@ namespace TopDevLinks.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new FindUserByLoginQuery(model.UserName).Execute();
+                var user = Execute(new FindUserByLoginQuery(model.UserName));
                 if (user != null && user.CheckPassword(model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);

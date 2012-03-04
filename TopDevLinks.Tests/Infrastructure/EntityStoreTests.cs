@@ -10,21 +10,28 @@ using TopDevLinks.Models.Entities;
 namespace TopDevLinks.Tests.Infrastructure
 {
     [TestFixture]
-    public class EntityStoreTests : MongoContext
+    public class EntityStoreTests
     {
-        private EntityStore _entityStore = new EntityStore();
+        private MongoContext _mongoContext;
+        private EntityStore _entityStore;
+
+        public EntityStoreTests()
+        {
+            _mongoContext = new MongoContext();
+            _entityStore = new EntityStore(_mongoContext);
+        }
 
         [SetUp]
         public void SetUp()
         {
-            Database.GetCollection("posts").RemoveAll();
-            Database.GetCollection("posts").CreateIndex(new IndexKeysBuilder().Ascending("PublishDate"),
+            _mongoContext.Database.GetCollection("posts").RemoveAll();
+            _mongoContext.Database.GetCollection("posts").CreateIndex(new IndexKeysBuilder().Ascending("PublishDate"),
                                                         new IndexOptionsBuilder().SetUnique(true));
         }
 
         private Post GetPost(ObjectId id)
         {
-            return Database.GetCollection<Post>("posts").Find(Query.EQ("_id", id)).FirstOrDefault();
+            return _mongoContext.Database.GetCollection<Post>("posts").Find(Query.EQ("_id", id)).FirstOrDefault();
         }
 
         [Test]
@@ -87,14 +94,14 @@ namespace TopDevLinks.Tests.Infrastructure
             _entityStore.UnsafeSave(post1);
             _entityStore.UnsafeSave(post2);
 
-            Assert.AreEqual(1, Database.GetCollection("posts").FindAll().Count());
+            Assert.AreEqual(1, _mongoContext.Database.GetCollection("posts").FindAll().Count());
         }
 
         [Test]
         public void Get_can_retrieve_existing_document()
         {
             var post = new Post();
-            Database.GetCollection("posts").Save(post);
+            _mongoContext.Database.GetCollection("posts").Save(post);
 
             Assert.IsNotNull(_entityStore.Get<Post>(post.Id));
         }
@@ -103,7 +110,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void Remove_can_remove_existing_document_by_reference()
         {
             var post = new Post();
-            Database.GetCollection("posts").Save(post);
+            _mongoContext.Database.GetCollection("posts").Save(post);
 
             _entityStore.Remove(post);
 
@@ -114,7 +121,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void Remove_can_remove_existing_document_by_id()
         {
             var post = new Post();
-            Database.GetCollection("posts").Save(post);
+            _mongoContext.Database.GetCollection("posts").Save(post);
 
             _entityStore.Remove<Post>(post.Id);
 
@@ -125,7 +132,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void UnsafeRemove_can_remove_existing_document_by_reference()
         {
             var post = new Post();
-            Database.GetCollection("posts").Save(post);
+            _mongoContext.Database.GetCollection("posts").Save(post);
 
             _entityStore.UnsafeRemove(post);
 
@@ -136,7 +143,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void UnsafeRemove_can_remove_existing_document_by_id()
         {
             var post = new Post();
-            Database.GetCollection("posts").Save(post);
+            _mongoContext.Database.GetCollection("posts").Save(post);
 
             _entityStore.UnsafeRemove<Post>(post.Id);
 

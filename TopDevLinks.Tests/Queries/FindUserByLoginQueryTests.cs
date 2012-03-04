@@ -6,29 +6,28 @@ using TopDevLinks.Queries;
 namespace TopDevLinks.Tests.Queries
 {
     [TestFixture]
-    public class FindUserByLoginQueryTests : MongoContext
+    public class FindUserByLoginQueryTests : QueryTestFixture
     {
-        private EntityStore _entityStore = new EntityStore();
         private User _user;
 
         [SetUp]
         public void SetUp()
         {
-            GetCollection<User>().Drop();
+            MongoContext.GetCollection<User>().Drop();
             _user = new User("davybrion", "ralinx@davybrion.com");
-            _entityStore.Save(_user);
+            EntityStore.Save(_user);
         }
 
         [Test]
         public void Query_returns_null_if_no_matching_documents_found()
         {
-            Assert.IsNull(new FindUserByLoginQuery("jefclaes").Execute());   
+            Assert.IsNull(Execute(new FindUserByLoginQuery("jefclaes")));   
         }
 
         [Test]
         public void Query_returns_correct_document_if_present()
         {
-            Assert.IsNotNull(new FindUserByLoginQuery("davybrion").Execute());
+            Assert.IsNotNull(Execute(new FindUserByLoginQuery("davybrion")));
         }
     }
 }
