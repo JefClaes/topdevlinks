@@ -35,11 +35,11 @@
         </div>
     </div>
 
-    <div class="container">      
-
-        @RenderBody()
-        
+    <div class="container">    
+        @RenderBody()        
     </div>
+
+    @RenderSection("JavaScriptBottom", required: false)
 
 </body>
 </html>
