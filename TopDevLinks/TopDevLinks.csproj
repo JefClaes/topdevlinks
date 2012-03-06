@@ -153,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FindUserByLoginQuery.cs" />
     <Compile Include="Queries\GetAllUsersQuery.cs" />
+    <Compile Include="Queries\GetPostsByPublishedQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\bootstrap-custom.css" />
