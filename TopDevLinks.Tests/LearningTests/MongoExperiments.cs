@@ -5,12 +5,14 @@ using MongoDB.Driver.Builders;
 using NUnit.Framework;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
+using TopDevLinks.Tests.Queries;
+using TopDevLinks.Queries;
 
 namespace TopDevLinks.Tests.LearningTests
 {
     [TestFixture]
     [Explicit]
-    public class MongoExperiments
+    public class MongoExperiments : QueryTestFixture
     {
         private MongoContext _mongoContext = new MongoContext();
 
@@ -41,6 +43,6 @@ namespace TopDevLinks.Tests.LearningTests
 
             post = posts.Find(Query.EQ("Published", false)).ElementAt(0);
             Assert.AreEqual(post.Links.ElementAt(2), retrievedPost.Links.ElementAt(2));
-        }       
+        }        
     }
 }

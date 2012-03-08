@@ -1,45 +1,31 @@
-﻿@{
+﻿@model TopDevLinks.Models.ViewModels.PostsViewModel
+
+@{
     ViewBag.Title = "TopDevLinks";
 }
 
-@for (var i = 0; i < 5; i++)
+@foreach (var post in Model.Posts)
 {
-
     <section>
         <div class="page-header">
-            <h1>@DateTime.Now.AddDays(i).ToShortDateString()</h1>
+            <h1>@post.PublishDate</h1>
             <small>Meta?</small>
         </div>
-        <div class="row">
-            <div class="span12">
-                <h3>node.js</h3>
-                <ul>
-                    <li><a href="#">Some link</a></li>
-                    <li><a href="#">Another link</a></li>
-                    <li><a href="#">More links</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span12">
-                <h3>.NET</h3>
-                <ul>
-                    <li><a href="#">Some link</a></li>
-                    <li><a href="#">Another link</a></li>
-                    <li><a href="#">More links</a></li>
-                </ul>            
-            </div>
-        </div>
-        <div class="row">
-            <div class="span12">
-                <h3>JavaScript</h3>
-                <ul>
-                    <li><a href="#">Some link</a></li>
-                    <li><a href="#">Another link</a></li>
-                    <li><a href="#">More links</a></li>
-                </ul>
-            </div>
-        </div>
+
+        @foreach (var category in post.Categories)
+        {
+            <div class="row">
+                <div class="span12">
+                    <h3>@category.Name</h3>
+                    <ul>
+                        @foreach (var link in category.Links)
+                        {                           
+                            <li><a href="#">@link</a></li>                       
+                        }
+                    </ul>
+                </div>
+            </div>            
+        }
+
     </section>    
-    
 }
