@@ -11,7 +11,7 @@ namespace TopDevLinks
     {
         public IEnumerable<UserRepresentation> Get()
         {
-            return Execute<IEnumerable<User>>(new GetAllUsersQuery())
+            return EntityStore.Get<User>()
                 .Select(u => new UserRepresentation() 
                 {
                     UserName = u.Login,

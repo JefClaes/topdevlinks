@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -23,6 +24,11 @@ namespace TopDevLinks.Infrastructure
         public void UnsafeSave<T>(T entity) where T : Entity
         {
             _mongoContext.GetCollection<T>().Save(entity, SafeMode.False);
+        }
+
+        public IEnumerable<T> Get<T>() where T : Entity
+        {
+            return _mongoContext.GetCollection<T>().FindAll();
         }
 
         public T Get<T>(ObjectId id) where T : Entity

@@ -149,5 +149,16 @@ namespace TopDevLinks.Tests.Infrastructure
 
             Assert.IsNull(GetPost(post.Id));
         }
+
+        [Test]
+        public void Get_returns_all_the_documents()
+        {
+            _mongoContext.Database.GetCollection("posts").Save(new Post() { Published = true, PublishDate = DateTime.Now });
+            _mongoContext.Database.GetCollection("posts").Save(new Post() { Published = true, PublishDate = DateTime.Now.AddDays(7) });
+
+            var posts = _entityStore.Get<Post>();
+
+            Assert.AreEqual(2, posts.Count());
+        }
     }
 }
