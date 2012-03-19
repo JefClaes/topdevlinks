@@ -18,7 +18,7 @@ namespace TopDevLinks.Infrastructure
 
         public void Save<T>(T entity) where T : Entity
         {
-            _mongoContext.GetCollection<T>().Save(entity, SafeMode.True);
+           _mongoContext.GetCollection<T>().Save(entity, SafeMode.True);
         }
 
         public void UnsafeSave<T>(T entity) where T : Entity
