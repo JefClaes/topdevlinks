@@ -24,10 +24,8 @@ namespace TopDevLinks.Queries
 
                 foreach (var linkGroup in publishedPost.Links.GroupBy(l => l.CategoryId))
                 {
-                    var mappingCategory = categories.Where(c => c.Id == linkGroup.Key).FirstOrDefault();
-                    var categoryName = mappingCategory == null ? string.Empty: mappingCategory.Name;
-
-                    var category = new PostCategoryViewModel(categoryName)
+                    var mappingCategory = categories.Where(c => c.Id == linkGroup.Key).FirstOrDefault();                 
+                    var category = new PostCategoryViewModel(mappingCategory.Name)
                     {
                         Links = publishedPost.Links
                             .Where(l => l.CategoryId == linkGroup.Key)
