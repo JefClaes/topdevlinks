@@ -2,6 +2,8 @@
     ViewBag.Title = "Index";
 }
 
+@model TopDevLinks.Areas.Admin.Models.ViewModels.PostsIndexViewModel
+
 <div class="page-header">
     <h1>Next edition</h1>    
 </div>
@@ -10,10 +12,16 @@
         <div class="span8">
         <fieldset>          
             <div class="control-group">
-            <label class="control-label" for="input01">Link</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" style="width: 97%">              
+                <label class="control-label" for="input01">Link</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" style="width: 97%">              
+                </div>
             </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">Category</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.SelectedCategoryId, Model.Categories, new { @class = "input-xlarge" })
+                </div>
             </div>                    
         </fieldset>
         </div>
