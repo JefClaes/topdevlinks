@@ -15,7 +15,7 @@ namespace TopDevLinks.Controllers
     {      
         public ActionResult Index()
         {            
-            ViewData.Model = Execute(new GetPostsQuery());
+            ViewData.Model = Execute(new GetPostsQuery(published: true));
 
             return View();
         }

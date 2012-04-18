@@ -11,10 +11,18 @@ namespace TopDevLinks.Queries
 {
     public class GetPostsQuery : Query<PostsViewModel>
     {
+        private bool _published;
+
+        public GetPostsQuery(bool published)
+        {
+            _published = published;
+        }
+
         public override PostsViewModel Execute()
         {
             var publishedPosts = MongoContext.GetCollection<Post>()
-                .Find(Query.EQ("Published", true)).ToList();
+                .Find(Query.EQ("Published", _published))
+                .ToList();
             var categories = MongoContext.GetCollection<Category>().FindAll();
 
             var model = new PostsViewModel();

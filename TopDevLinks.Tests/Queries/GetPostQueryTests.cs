@@ -27,9 +27,9 @@ namespace TopDevLinks.Tests.Queries
         }
 
         [Test]
-        public void Query_returns_one_result()
+        public void Query_returns_one_published_post()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery());
+            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
 
             Assert.IsTrue(model.Posts.Count == 1);
         }
@@ -37,7 +37,7 @@ namespace TopDevLinks.Tests.Queries
         [Test]
         public void Query_returns_model_with_correct_categories()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery());
+            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
 
             var publishedPost = model.Posts.Single();
 
@@ -48,7 +48,7 @@ namespace TopDevLinks.Tests.Queries
         [Test]
         public void Query_returns_model_with_correct_number_of_links()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery());
+            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
 
             var publishedPost = model.Posts.Single();
 
