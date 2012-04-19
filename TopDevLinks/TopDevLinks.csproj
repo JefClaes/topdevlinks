@@ -139,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Infrastructure\EntityStore.cs" />
     <Compile Include="Infrastructure\MongoContext.cs" />
     <Compile Include="Infrastructure\MongoContextApiController.cs" />

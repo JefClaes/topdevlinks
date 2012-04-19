@@ -42,5 +42,11 @@ namespace TopDevLinks.Infrastructure
         {
             return (TResult)ExecuteQueryFunc(query);
         }
+
+        protected void Execute(Command command) 
+        {
+            command.MongoContext = MongoContext;
+            command.Execute();
+        }
     }
 }
