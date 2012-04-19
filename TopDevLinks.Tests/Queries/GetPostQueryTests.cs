@@ -35,6 +35,14 @@ namespace TopDevLinks.Tests.Queries
         }
 
         [Test]
+        public void Query_returns_one_unpublished_post()
+        {
+            var model = Execute<PostsViewModel>(new GetPostsQuery(published: false));
+
+            Assert.IsTrue(model.Posts.Count == 1);
+        }
+
+        [Test]
         public void Query_returns_model_with_correct_categories()
         {
             var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
