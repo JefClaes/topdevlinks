@@ -94,11 +94,13 @@ namespace TopDevLinks.Tests.Queries
             _publishedPost.AddLink(new Link(new Uri("http://jclaes.blogspot.com/1"), "Jef Claes link 1", _dotNetCategory.Id, _user.Id));
             _publishedPost.AddLink(new Link(new Uri("http://jclaes.blogspot.com/2"), "Jef Claes link 2", _dotNetCategory.Id, _user.Id));
             _publishedPost.AddLink(new Link(new Uri("http://jclaes.blogspot.com/3"), "Jef Claes link 3", _dotNetCategory.Id, _user.Id));
-            _publishedPost.AddLink(new Link(new Uri("http://davybrion.com/3"), "Davy Brion link 1", _nodeCategory.Id, _user.Id));
+            _publishedPost.AddLink(new Link(new Uri("http://davybrion.com/1"), "Davy Brion link 1", _nodeCategory.Id, _user.Id));
 
             var unpublishedPost = new Post();
             unpublishedPost.PublishDate = _date.AddDays(7);
             unpublishedPost.Published = false;
+            unpublishedPost.AddLink(new Link(new Uri("http://jefclaes.be/4"), "Jef Claes link 4", _dotNetCategory.Id, _user.Id));
+            unpublishedPost.AddLink(new Link(new Uri("http://davybrion.com/2"), "Davy Brion link 2", _nodeCategory.Id, _user.Id));
 
             EntityStore.Save<Post>(_publishedPost);
             EntityStore.Save<Post>(unpublishedPost);

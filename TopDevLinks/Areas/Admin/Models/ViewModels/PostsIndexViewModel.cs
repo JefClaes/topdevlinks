@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using TopDevLinks.Models.ViewModels;
 
 namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
@@ -11,5 +8,7 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
         public SelectList Categories { get; set; }
 
         public int SelectedCategoryId { get; set; }
+
+        public PostsViewModel UnpublishedPosts { get; set; }
     }
 }

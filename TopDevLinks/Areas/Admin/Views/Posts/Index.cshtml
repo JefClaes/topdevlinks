@@ -30,5 +30,30 @@
         </div>
     </form>          
 </div>
+@foreach (var post in Model.UnpublishedPost.Posts)
+{
+    <section>
+        <div class="page-header">
+            <h1>@post.PublishDate</h1>            
+        </div>
+
+        @foreach (var category in post.Categories)
+        {
+            <div class="row">
+                <div class="span12">
+                    <h3>@category.Name</h3>
+                    <ul>
+                        @foreach (var link in category.Links)
+                        {                           
+                            <li><a href="#">@link</a></li>                       
+                        }
+                    </ul>
+                </div>
+            </div>            
+        }
+
+    </section>    
+}
+
 
 

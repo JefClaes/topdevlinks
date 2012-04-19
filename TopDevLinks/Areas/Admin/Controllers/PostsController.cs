@@ -3,6 +3,7 @@ using System.Linq;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 using TopDevLinks.Areas.Admin.Models.ViewModels;
+using TopDevLinks.Queries;
 
 namespace TopDevLinks.Areas.Admin.Controllers
 {
@@ -12,10 +13,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var categories = EntityStore.Get<Category>();
+            var unpublishedPosts = Execute(new GetPostsQuery(published: false));
 
             var viewModel = new PostsIndexViewModel()
             {
-                Categories = new SelectList(categories, "Id", "Name")
+                Categories = new SelectList(categories, "Id", "Name"),
+                UnpublishedPosts = unpublishedPosts
             };
 
             ViewData.Model = viewModel;
