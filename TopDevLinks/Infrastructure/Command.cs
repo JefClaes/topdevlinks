@@ -8,6 +8,7 @@ namespace TopDevLinks.Infrastructure
     public abstract class Command
     {
         public MongoContext MongoContext { get; set; }
+        public EntityStore EntityStore { get; set; }
         public abstract void Execute();
     }
 }

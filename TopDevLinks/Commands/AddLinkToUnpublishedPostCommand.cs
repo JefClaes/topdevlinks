@@ -21,8 +21,11 @@ namespace TopDevLinks.Commands
         {
             var unpublishedPosts = MongoContext.GetCollection<Post>().Find(Query.EQ("Published", false));
 
-            foreach (var unpublishedPost in unpublishedPosts)            
-                unpublishedPost.AddLink(_link);            
+            foreach (var unpublishedPost in unpublishedPosts)
+            {
+                unpublishedPost.AddLink(_link);
+                EntityStore.Save<Post>(unpublishedPost);
+            }
         }
     }
 }

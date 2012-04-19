@@ -20,6 +20,7 @@ namespace TopDevLinks.Tests.Commands
         protected void Execute(Command command)
         {
             command.MongoContext = MongoContext;
+            command.EntityStore = EntityStore;
             command.Execute();
         }
     }
