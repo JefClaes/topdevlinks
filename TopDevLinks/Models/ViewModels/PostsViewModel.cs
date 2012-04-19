@@ -28,16 +28,31 @@ namespace TopDevLinks.Models.ViewModels
         public IList<PostCategoryViewModel> Categories { get;set; }
     }
 
+    public class PostLinkViewModel
+    {
+        public PostLinkViewModel(string title, string url)
+        {
+            Title = title;
+            Url = url;            
+        }
+
+        public string Title { get; set; }
+
+        public string Url { get; set; }
+    }
+
     public class PostCategoryViewModel
     {
         public PostCategoryViewModel(string name)
         {
-            Links = new List<string>();
+            Links = new List<PostLinkViewModel>();
             Name = name;
         }
 
         public string Name { get; set; }
 
-        public IList<string> Links { get; set; }
+        public IList<PostLinkViewModel> Links { get; set; }
     }
+
+
 }

@@ -38,7 +38,7 @@ namespace TopDevLinks.Queries
                     {
                         Links = publishedPost.Links
                             .Where(l => l.CategoryId == linkGroup.Key)
-                            .Select(l => l.Title)
+                            .Select(l => new PostLinkViewModel(l.Title, l.Uri.AbsoluteUri))
                             .ToList()
                     };
 
