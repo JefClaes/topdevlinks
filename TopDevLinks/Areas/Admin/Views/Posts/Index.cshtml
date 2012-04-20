@@ -13,14 +13,16 @@
         <fieldset>          
             <div class="control-group">
                 <label class="control-label" for="input01">Link</label>
-                <div class="controls">
+                <div class="controls">                    
                     @Html.TextBoxFor(m => m.Url, new { @class="input-xlarge", style="width: 97%" })                    
+                    @Html.ValidationMessageFor(m => m.Url)
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">Title</label>
-                <div class="controls">
+                <div class="controls">                    
                     @Html.TextBoxFor(m => m.Title, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.ValidationMessageFor(m => m.Title)
                 </div>
             </div>
             <div class="control-group">
