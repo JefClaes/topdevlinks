@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
-using System.Linq;
+using TopDevLinks.Areas.Admin.Models.ViewModels;
+using TopDevLinks.Commands;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
-using TopDevLinks.Areas.Admin.Models.ViewModels;
 using TopDevLinks.Queries;
+using MongoDB.Bson;
+using System;
 
 namespace TopDevLinks.Areas.Admin.Controllers
 {
@@ -27,6 +29,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(string selectedCategoryId, string url, string title)
         {
+            var link = new Link(new Uri(url), title, new ObjectId(selectedCategoryId), new ObjectId("4f8ee5b7fb1e371e880cd88b"));
+            Execute(new AddLinkToUnpublishedPostCommand(link));
+
             var categories = EntityStore.Get<Category>();
             var unpublishedPosts = Execute(new GetPostsQuery(published: false));
 
