@@ -15,13 +15,29 @@ namespace TopDevLinks.Areas.Admin.Controllers
             var categories = EntityStore.Get<Category>();
             var unpublishedPosts = Execute(new GetPostsQuery(published: false));
 
-            var viewModel = new PostsIndexViewModel()
+            ViewData.Model = new PostsIndexViewModel()
             {
                 Categories = new SelectList(categories, "Id", "Name"),
                 UnpublishedPosts = unpublishedPosts
             };
+            
+            return View();
+        }
 
-            ViewData.Model = viewModel;
+        [HttpPost]
+        public ActionResult Index(string selectedCategoryId, string url, string title)
+        {
+            var categories = EntityStore.Get<Category>();
+            var unpublishedPosts = Execute(new GetPostsQuery(published: false));
+
+            ViewData.Model = new PostsIndexViewModel()
+            {
+                Categories = new SelectList(categories, "Id", "Name"),
+                UnpublishedPosts = unpublishedPosts,
+                SelectedCategoryId = selectedCategoryId,
+                Url = url,
+                Title = title
+            };
 
             return View();
         }

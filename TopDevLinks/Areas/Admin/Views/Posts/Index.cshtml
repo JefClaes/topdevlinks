@@ -8,19 +8,19 @@
     <h1>Next edition</h1>    
 </div>
 <div class="row">    
-    <form class="form-horizontal">
+    @using (Html.BeginForm("Index", "Posts", FormMethod.Post, new { @class="form-horizontal" } )) {    
         <div class="span8">
         <fieldset>          
             <div class="control-group">
                 <label class="control-label" for="input01">Link</label>
                 <div class="controls">
-                    <input type="text" class="input-xlarge" style="width: 97%">              
+                    @Html.TextBoxFor(m => m.Url, new { @class="input-xlarge", style="width: 97%" })                    
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">Title</label>
                 <div class="controls">
-                    <input type="text" class="input-xlarge" style="width: 97%">              
+                    @Html.TextBoxFor(m => m.Title, new { @class="input-xlarge", style="width: 97%" })
                 </div>
             </div>
             <div class="control-group">
@@ -34,7 +34,7 @@
         <div class="span3">
             <button type="submit" class="btn btn-primary">Add</button>            
         </div>
-    </form>          
+    }         
 </div>
 @foreach (var post in Model.UnpublishedPosts.Posts)
 {
