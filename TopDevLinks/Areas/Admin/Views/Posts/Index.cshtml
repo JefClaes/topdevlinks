@@ -40,7 +40,7 @@
 {
     <section>
         <div class="page-header">
-            <h1>@post.PublishDate</h1>            
+            <h1>@post.PublishDate.Value.ToShortDateString()</h1>            
         </div>
 
         @foreach (var category in post.Categories)
