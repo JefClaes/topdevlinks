@@ -29,8 +29,11 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(string selectedCategoryId, string url, string title)
         {
-            var link = new Link(new Uri(url), title, new ObjectId(selectedCategoryId), new ObjectId("4f8ee5b7fb1e371e880cd88b"));
-            Execute(new AddLinkToUnpublishedPostCommand(link));
+            if (ModelState.IsValid)
+            {
+                var link = new Link(new Uri(url), title, new ObjectId(selectedCategoryId), new ObjectId("4f8ee5b7fb1e371e880cd88b"));
+                Execute(new AddLinkToUnpublishedPostCommand(link));
+            }
 
             var categories = EntityStore.Get<Category>();
             var unpublishedPosts = Execute(new GetPostsQuery(published: false));
