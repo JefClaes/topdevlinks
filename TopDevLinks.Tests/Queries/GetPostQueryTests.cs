@@ -64,6 +64,14 @@ namespace TopDevLinks.Tests.Queries
             Assert.IsTrue(publishedPost.Categories.Where(c => c.Name == _nodeCategory.Name).First().Links.Count() == 1);
         }
 
+        [Test]
+        public void Query_returns_one_model_when_take_is_set_to_one()
+        {
+            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true, take: 1));
+
+            Assert.AreEqual(1, model.Posts.Count);
+        }
+
         private void SetUpUser() 
         {
             MongoContext.GetCollection<User>().Drop();
