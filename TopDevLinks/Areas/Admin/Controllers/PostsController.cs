@@ -53,6 +53,8 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Publish()
         {
+            Execute(new PublishCommand());
+
             return RedirectToAction("Index");
         }
     }
