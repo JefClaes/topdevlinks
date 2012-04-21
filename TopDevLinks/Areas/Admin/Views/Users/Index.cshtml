@@ -2,10 +2,42 @@
     ViewBag.Title = "Users";
 }
 
-@model IEnumerable<TopDevLinks.Models.Entities.User>
+@model TopDevLinks.Areas.Admin.Models.ViewModels.UsersIndexViewModel
 
 <div class="page-header">
     <h1>Users</h1>    
+</div>
+<div class="row">    
+    @using (Html.BeginForm("Index", "Users", FormMethod.Post, new { @class="form-horizontal" } )) {    
+        <div class="span8">
+        <fieldset>          
+            <div class="control-group">
+                <label class="control-label" for="input01">@Html.LabelFor(m => m.Login)</label>
+                <div class="controls">                    
+                    @Html.TextBoxFor(m => m.Login, new { @class="input-xlarge", style="width: 97%" })                    
+                    @Html.ValidationMessageFor(m => m.Login)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">@Html.LabelFor(m => m.Email)</label>
+                <div class="controls">                    
+                    @Html.TextBoxFor(m => m.Email, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">@Html.LabelFor(m => m.Password)</label>
+                <div class="controls">                    
+                    @Html.PasswordFor(m => m.Password, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>                  
+        </fieldset>
+        </div>        
+        <div class="span3">
+            <button type="submit" class="btn btn-primary">Add</button>            
+        </div>
+    }         
 </div>
 <table class="table table-bordered table-striped">
     <thead>
@@ -16,7 +48,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @foreach (var user in Model.Users)
         {
             <tr>
                 <td>@user.Login</td>

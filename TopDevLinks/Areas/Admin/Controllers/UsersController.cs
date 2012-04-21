@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Queries;
 using TopDevLinks.Models.Entities;
+using TopDevLinks.Areas.Admin.Models.ViewModels;
 
 namespace TopDevLinks.Areas.Admin.Controllers
 {
@@ -14,7 +15,18 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            ViewData.Model = EntityStore.Get<User>();
+            ViewData.Model = new UsersIndexViewModel(EntityStore.Get<User>());                        
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(UsersIndexViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO: Implement
+            }
 
             return View();
         }
