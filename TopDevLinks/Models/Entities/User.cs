@@ -7,6 +7,7 @@ namespace TopDevLinks.Models.Entities
     {
         public string Login { get; private set; }
         public string Email { get; private set; }
+        public bool Activated { get; set; }
 
         [BsonElement("HashedPassword")]
         private string _hashedPassword;
@@ -15,8 +16,9 @@ namespace TopDevLinks.Models.Entities
         {
             Login = login;
             Email = email;
+            Activated = true;
         }
-
+       
         public void SetPassword(string password)
         {
             _hashedPassword = BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt(10));

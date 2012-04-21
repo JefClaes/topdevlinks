@@ -2,18 +2,27 @@
     ViewBag.Title = "Users";
 }
 
+@model IEnumerable<TopDevLinks.Models.Entities.User>
 
 <div class="page-header">
     <h1>Users</h1>    
 </div>
-<table>
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <td>User</td>
+            <td>Login</td>
             <td>Email</td>
+            <td>Activated</td>
         </tr>
     </thead>
     <tbody>
-        
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Login</td>
+                <td>@user.Email</td>
+                <td>@Html.Raw(user.Activated ? "Yes" : "No")</td>
+            </tr>
+        }
     </tbody>
 </table>
