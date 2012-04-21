@@ -49,5 +49,11 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Publish()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
