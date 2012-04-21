@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Commands\AddLinkToUnpublishedPostCommandTest.cs" />
     <Compile Include="Commands\CommandTestFixture.cs" />
+    <Compile Include="Commands\PublishCommandTest.cs" />
     <Compile Include="Controllers\DisconnectedAccountControllerTests.cs" />
     <Compile Include="Controllers\DisconnectedControllerTestFixture.cs" />
     <Compile Include="Entities\UserTests.cs" />

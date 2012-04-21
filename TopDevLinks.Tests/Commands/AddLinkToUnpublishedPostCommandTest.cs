@@ -26,7 +26,7 @@ namespace TopDevLinks.Tests.Commands
         }
 
         [Test]
-        public void adds_link_to_unpublished_posts()
+        public void Command_adds_link_to_unpublished_posts()
         {
             var link = new Link(new Uri("http://jefclaes.be/Post"), "Post", _category.Id, _user.Id);
 
