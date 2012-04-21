@@ -40,10 +40,7 @@
 </div>
 @foreach (var post in Model.UnpublishedPosts.Posts)
 {
-    <section>
-        <div class="page-header">
-            <h1>@post.PublishDate.Value.ToShortDateString()</h1>            
-        </div>
+    <section>       
 
         @foreach (var category in post.Categories)
         {
