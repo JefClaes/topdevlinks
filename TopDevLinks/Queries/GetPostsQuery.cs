@@ -19,9 +19,10 @@ namespace TopDevLinks.Queries
         }
 
         public override PostsViewModel Execute()
-        {
+        {            
             var publishedPosts = MongoContext.GetCollection<Post>()
                 .Find(Query.EQ("Published", _published))
+                .SetSortOrder(SortBy.Descending("PublishDate"))
                 .ToList();
             var categories = MongoContext.GetCollection<Category>().FindAll();
 

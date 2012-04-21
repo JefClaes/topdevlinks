@@ -11,7 +11,7 @@ namespace TopDevLinks.Infrastructure
 
         public static DateTime Now
         {
-            get { return dateTimeToReturn == null ? DateTime.Now : dateTimeToReturn.Value; }
+            get { return dateTimeToReturn.HasValue ? dateTimeToReturn.Value : DateTime.Now; }
         }
 
         public static void SetDateTimeToReturn(DateTime overriddenCurrentDateTime)
