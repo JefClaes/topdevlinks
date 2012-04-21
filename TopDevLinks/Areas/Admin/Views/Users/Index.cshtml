@@ -58,7 +58,7 @@
                 <td>
                     @if (user.CanBeDeactivated)
                     {
-                        using (Html.BeginForm("Deactive", "Users", new { id = user.Id }, FormMethod.Post))
+                        using (Html.BeginForm("Index", "Users", new { id = user.Id }, FormMethod.Post))
                         {
                             <button type="submit" class="btn btn-danger">Deactivate</button>
                         }

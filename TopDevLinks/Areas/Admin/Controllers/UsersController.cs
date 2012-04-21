@@ -25,10 +25,11 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(UsersIndexViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                // TODO: Implement
-            }
+            if (ModelState.IsValid)            
+                Execute(new AddUserCommand(model.Login, model.Email, model.Password));            
+
+            model.Users = Execute(new GetUsersQuery());
+            ViewData.Model = model;
 
             return View();
         }

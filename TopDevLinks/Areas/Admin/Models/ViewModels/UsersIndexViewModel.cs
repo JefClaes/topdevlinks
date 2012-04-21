@@ -9,6 +9,8 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
     public class UsersIndexViewModel
     {
+        public UsersIndexViewModel() { }
+
         public UsersIndexViewModel(UsersViewModel users)
         {
             Users = users;
