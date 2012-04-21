@@ -35,7 +35,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deactive(string id)
+        public ActionResult Deactivate(string id)
         {
             Execute(new DeactivateUserCommand(id));
 
