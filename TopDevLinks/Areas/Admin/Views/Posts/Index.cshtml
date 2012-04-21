@@ -60,5 +60,14 @@
     </section>    
 }
 
+<div class="row">
+    @using (Html.BeginForm("Publish", "Posts", FormMethod.Post))
+    {
+        <div class="span3 container-publish">            
+            <button type="submit" class="btn btn-primary">Publish</button>
+        </div>
+    }
+</div>
+
 
 
