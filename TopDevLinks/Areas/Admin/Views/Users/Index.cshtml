@@ -45,15 +45,25 @@
             <td>Login</td>
             <td>Email</td>
             <td>Activated</td>
+            <td>&nbsp;</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Users)
+        @foreach (var user in Model.Users.Items)
         {
             <tr>
                 <td>@user.Login</td>
                 <td>@user.Email</td>
                 <td>@Html.Raw(user.Activated ? "Yes" : "No")</td>
+                <td>
+                    @if (user.CanBeDeactivated)
+                    {
+                        using (Html.BeginForm("Deactive", "Users", new { id = user.Id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-danger">Deactivate</button>
+                        }
+                    }
+                </td>
             </tr>
         }
     </tbody>

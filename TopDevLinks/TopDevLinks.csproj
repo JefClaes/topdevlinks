@@ -134,7 +134,9 @@
     <Compile Include="Areas\Admin\Models\Representations\UserRepresentation.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\PostsIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UsersIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\UsersViewModel.cs" />
     <Compile Include="Commands\AddLinkToUnpublishedPostCommand.cs" />
+    <Compile Include="Commands\DeactivateUserCommand.cs" />
     <Compile Include="Commands\PublishCommand.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FindUserByLoginQuery.cs" />
     <Compile Include="Queries\GetPostsQuery.cs" />
+    <Compile Include="Queries\GetUsersQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\bootstrap-custom.css" />

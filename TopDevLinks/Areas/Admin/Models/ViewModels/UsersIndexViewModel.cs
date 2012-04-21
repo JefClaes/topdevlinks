@@ -9,7 +9,7 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
     public class UsersIndexViewModel
     {
-        public UsersIndexViewModel(IEnumerable<User> users)
+        public UsersIndexViewModel(UsersViewModel users)
         {
             Users = users;
         }
@@ -23,6 +23,6 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
         [Required]
         public string Password { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        public UsersViewModel Users { get; set; }
     }
 }
