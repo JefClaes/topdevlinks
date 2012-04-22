@@ -23,10 +23,15 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(UsersIndexViewModel model)
+        public ActionResult Index(UsersIndexViewModel inputModel)
         {
-            if (ModelState.IsValid)            
-                Execute(new AddUserCommand(model.Login, model.Email, model.Password));            
+            var model = new UsersIndexViewModel();
+
+            if (ModelState.IsValid)
+            {
+                Execute(new AddUserCommand(inputModel.Login, inputModel.Email, inputModel.Password));
+                ModelState.Clear();
+            }
 
             model.Users = Execute(new GetUsersQuery());
             ViewData.Model = model;
@@ -37,7 +42,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Deactivate(string id)
         {
-            Execute(new DeactivateUserCommand(id));
+            Execute(new DeactivateUserCommand(id));            
 
             return RedirectToAction("Index");
         }

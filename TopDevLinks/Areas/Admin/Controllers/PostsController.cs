@@ -27,25 +27,25 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string selectedCategoryId, string url, string title)
+        public ActionResult Index(PostsIndexViewModel inputModel)
         {
+            var model = new PostsIndexViewModel();            
+
             if (ModelState.IsValid)
             {
-                var link = new Link(new Uri(url), title, new ObjectId(selectedCategoryId), new ObjectId("4f8ee5b7fb1e371e880cd88b"));
+                var link = new Link(
+                    new Uri(inputModel.Url),
+                    inputModel.Title,
+                    new ObjectId(inputModel.SelectedCategoryId),
+                    new ObjectId("4f8ee5b7fb1e371e880cd88b"));
                 Execute(new AddLinkToUnpublishedPostCommand(link));
-            }
+                ModelState.Clear();
+            }            
 
-            var categories = EntityStore.Get<Category>();
-            var unpublishedPosts = Execute(new GetPostsQuery(published: false));
-
-            ViewData.Model = new PostsIndexViewModel()
-            {
-                Categories = new SelectList(categories, "Id", "Name"),
-                UnpublishedPosts = unpublishedPosts,
-                SelectedCategoryId = selectedCategoryId,
-                Url = url,
-                Title = title
-            };
+            model.Categories = new SelectList(EntityStore.Get<Category>(), "Id", "Name");
+            model.UnpublishedPosts = Execute(new GetPostsQuery(published: false));
+            
+            ViewData.Model = model;
 
             return View();
         }
