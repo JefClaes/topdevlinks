@@ -775,3 +775,7 @@ form.well {
 .container-publish {
     margin-top: 15px;
 }
+
+.stretch {
+    width: 99%;
+}
