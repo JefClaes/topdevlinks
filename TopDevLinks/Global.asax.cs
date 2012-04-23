@@ -29,9 +29,9 @@ namespace TopDevLinks
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
-
-            routes.MapRoute("Archive", "Archive/{date}", new { controller = "Home", action = "Archive" });
+            );            
+            
+            routes.MapRoute("Archive", "Archive", new { controller = "Home", action = "Archive" });
             routes.MapRoute("About", "About", new { controller = "Home", action = "About" });
             routes.MapRoute("Feed", "Feed", new { controller = "Home", action = "Feed" });
             routes.MapRoute(

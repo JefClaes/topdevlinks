@@ -18,9 +18,9 @@ namespace TopDevLinks.Controllers
             ViewData.Model = Execute(new GetPostsQuery(published: true, take: 3));
 
             return View();
-        }
+        }       
 
-        public ActionResult Archive(DateTime? date)
+        public ActionResult Archive()
         {
             return View();
         }
