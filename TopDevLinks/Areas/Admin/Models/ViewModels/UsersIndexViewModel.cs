@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using TopDevLinks.Models.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
@@ -23,7 +19,13 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Password again")]
+        [Compare("Password", ErrorMessage = "The new password and confirmation password do not match.")]
+        public string PasswordAgain { get; set; }
 
         public UsersViewModel Users { get; set; }
     }

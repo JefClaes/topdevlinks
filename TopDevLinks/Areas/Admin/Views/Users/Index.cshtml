@@ -14,22 +14,29 @@
             <div class="control-group">
                 <label class="control-label" for="input01">@Html.LabelFor(m => m.Login)</label>
                 <div class="controls">                    
-                    @Html.TextBoxFor(m => m.Login, new { @class="input-xlarge", style="width: 97%" })                    
+                    @Html.TextBoxFor(m => m.Login, new { @class="input-xlarge" })                    
                     @Html.ValidationMessageFor(m => m.Login)
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">@Html.LabelFor(m => m.Email)</label>
                 <div class="controls">                    
-                    @Html.TextBoxFor(m => m.Email, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.TextBoxFor(m => m.Email, new { @class="input-xlarge" })
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">@Html.LabelFor(m => m.Password)</label>
                 <div class="controls">                    
-                    @Html.PasswordFor(m => m.Password, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.PasswordFor(m => m.Password, new { @class="input-xlarge" })
                     @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>  
+            <div class="control-group">
+                <label class="control-label" for="input01">@Html.LabelFor(m => m.PasswordAgain)</label>
+                <div class="controls">                    
+                    @Html.PasswordFor(m => m.PasswordAgain, new { @class="input-xlarge" })
+                    @Html.ValidationMessageFor(m => m.PasswordAgain)
                 </div>
             </div>  
             <div class="form-actions">
