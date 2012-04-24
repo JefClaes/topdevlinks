@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using TopDevLinks.Infrastructure.Web;
 using System.ServiceModel.Syndication;
+using System.Web.Mvc;
 using TopDevLinks.Infrastructure;
-using TopDevLinks.Models.ViewModels;
+using TopDevLinks.Infrastructure.Web;
 using TopDevLinks.Queries;
-using TopDevLinks.Models.Entities;
 
 namespace TopDevLinks.Controllers
 {
@@ -15,7 +12,7 @@ namespace TopDevLinks.Controllers
     {      
         public ActionResult Index()
         {            
-            ViewData.Model = Execute(new GetPostsQuery(published: true, take: 3));
+            ViewData.Model = Execute(new GetPostsQuery(published: true, take: 3));          
 
             return View();
         }       
