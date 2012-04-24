@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
@@ -9,6 +10,7 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
     {
         public CategoriesViewModel Categories { get; set; }
 
+        [Required]
         public string Name { get; set; }
     }
 }

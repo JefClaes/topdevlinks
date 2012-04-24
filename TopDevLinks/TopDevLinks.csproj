@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\Models\ViewModels\PostsIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UsersIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UsersViewModel.cs" />
+    <Compile Include="Commands\AddCategoryCommand.cs" />
     <Compile Include="Commands\AddLinkToUnpublishedPostCommand.cs" />
     <Compile Include="Commands\AddUserCommand.cs" />
     <Compile Include="Commands\DeactivateUserCommand.cs" />
