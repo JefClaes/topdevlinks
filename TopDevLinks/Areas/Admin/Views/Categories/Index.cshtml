@@ -2,6 +2,8 @@
     ViewBag.Title = "Categories";
 }
 
+@model TopDevLinks.Areas.Admin.Models.ViewModels.CategoriesIndexViewModel
+
 <div class="page-header">
     <h1>Categories</h1>    
 </div>
@@ -10,10 +12,10 @@
         <div class="span12">
         <fieldset>          
             <div class="control-group">
-                <label class="control-label" for="input01">@Html.LabelFor(m => m.Url)</label>
+                <label class="control-label" for="input01">@Html.LabelFor(m => m.Name)</label>
                 <div class="controls">                    
-                    @Html.TextBoxFor(m => m.Url, new { @class="input-xlarge", style="width: 97%" })                    
-                    @Html.ValidationMessageFor(m => m.Url)
+                    @Html.TextBoxFor(m => m.Name, new { @class="input-xlarge", style="width: 97%" })                    
+                    @Html.ValidationMessageFor(m => m.Name)
                 </div>
             </div>           
             <div class="form-actions">
@@ -23,3 +25,18 @@
         </div>        
     }         
 </div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.Categories.Items)
+        {
+            <tr>
+                <td>@category.Name</td>                
+            </tr>
+        }
+    </tbody>
+</table>
