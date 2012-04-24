@@ -31,6 +31,7 @@ namespace TopDevLinks.Queries
 
             var model = new PostsViewModel();
 
+            // TODO: This should be changed to take the category priority into account
             foreach (var publishedPost in publishedCursor)
             {
                 var post = new PostViewModel(publishedPost.PublishDate);
