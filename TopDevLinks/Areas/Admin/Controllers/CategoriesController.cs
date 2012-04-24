@@ -55,13 +55,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(EditCategoryViewModel inputModel)
         {         
-            if (ModelState.IsValid)
-            {
-                // TODO: Implement update
-                return RedirectToAction("Index");
-            }
-
-            return View();
+            if (!ModelState.IsValid)
+                return View();
+                
+            Execute(new UpdateCategoryCommand(inputModel.Id, inputModel.Name, inputModel.Priority));
+                
+            return RedirectToAction("Index");                                  
         }
     }
 }

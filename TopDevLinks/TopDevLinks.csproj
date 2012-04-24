@@ -144,6 +144,7 @@
     <Compile Include="Commands\AddUserCommand.cs" />
     <Compile Include="Commands\DeactivateUserCommand.cs" />
     <Compile Include="Commands\PublishCommand.cs" />
+    <Compile Include="Commands\UpdateCategoryCommand.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
