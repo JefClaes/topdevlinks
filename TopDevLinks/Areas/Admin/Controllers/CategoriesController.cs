@@ -24,12 +24,18 @@ namespace TopDevLinks.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                Execute(new AddCategoryCommand(inputModel.Name));
+                Execute(new AddCategoryCommand(
+                    inputModel.Name, inputModel.Priority.HasValue ? inputModel.Priority.Value : 0));
                 ModelState.Clear();
             }
 
             ViewData.Model = new CategoriesIndexViewModel() { Categories = Execute(new GetCategoriesQuery()) };
 
+            return View();
+        }
+
+        public ActionResult Edit(string id)
+        {
             return View();
         }
     }

@@ -16,8 +16,8 @@ namespace TopDevLinks.Queries
             var items = MongoContext
                 .GetCollection<Category>()
                 .FindAll()
-                .SetSortOrder(SortBy.Descending("priority"))
-                .Select(c => new CategoryViewModel(c.Id.ToString(), c.Name));
+                .SetSortOrder(SortBy.Descending("Priority"))
+                .Select(c => new CategoryViewModel(c.Id.ToString(), c.Name, c.Priority));
 
             return new CategoriesViewModel(items);
         }

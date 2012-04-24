@@ -12,5 +12,8 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
 
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public int? Priority { get; set; }
     }
 }
