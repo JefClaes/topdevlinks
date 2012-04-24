@@ -14,12 +14,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {      
         public ActionResult Index()
         {
-            var categories = EntityStore.Get<Category>();
+            var categories = Execute(new GetCategoriesQuery());
             var unpublishedPosts = Execute(new GetPostsQuery(published: false));
 
             ViewData.Model = new PostsIndexViewModel()
             {
-                Categories = new SelectList(categories, "Id", "Name"),
+                Categories = new SelectList(categories.Items, "Id", "Name"),
                 UnpublishedPosts = unpublishedPosts
             };
             
@@ -42,7 +42,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
                 ModelState.Clear();
             }            
 
-            model.Categories = new SelectList(EntityStore.Get<Category>(), "Id", "Name");
+            model.Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name");
             model.UnpublishedPosts = Execute(new GetPostsQuery(published: false));
             
             ViewData.Model = model;
