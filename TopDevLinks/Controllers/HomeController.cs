@@ -15,10 +15,17 @@ namespace TopDevLinks.Controllers
             ViewData.Model = Execute(new GetPostsQuery(published: true, take: 3));          
 
             return View();
-        }       
+        }
+
+        public ActionResult Post(string id)
+        {
+            return View();
+        }
 
         public ActionResult Archive()
         {
+            ViewData.Model = Execute(new GetPostsArchiveQuery());
+
             return View();
         }
 

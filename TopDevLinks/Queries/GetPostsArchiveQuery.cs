@@ -5,19 +5,20 @@ using System.Web;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 using MongoDB.Driver.Builders;
+using TopDevLinks.Models.ViewModels;
 
 namespace TopDevLinks.Queries
 {
-    public class GetPostsArchiveQuery : Query<IEnumerable<DateTime?>>
+    public class GetPostsArchiveQuery : Query<IEnumerable<ArchiveItemViewModel>>
     {
-        public override IEnumerable<DateTime?> Execute()
+        public override IEnumerable<ArchiveItemViewModel> Execute()
         {
             var results = MongoContext.GetCollection<Post>()
                 .Find(Query.EQ("Published", true))
-                .SetFields(Fields.Include("PublishDate"))
+                .SetFields(Fields.Include("Id", "PublishDate"))
                 .SetSortOrder(SortBy.Descending("PublishDate"));
 
-            return results.Select(s => s.PublishDate);
+            return results.Select(s => new ArchiveItemViewModel(s.Id.ToString(), s.PublishDate.Value));
         }
     }
 }

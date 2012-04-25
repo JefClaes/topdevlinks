@@ -2,4 +2,18 @@
     ViewBag.Title = "Archive";
 }
 
-<h2>Archive</h2>
+@model IEnumerable<TopDevLinks.Models.ViewModels.ArchiveItemViewModel>
+
+<div class="page-header">
+    <h1>Archive</h1>    
+</div>
+
+<section>
+    <ul>
+        @foreach (var item in Model)
+        {  
+            <li>@Html.ActionLink(item.Date.ToShortDateString(), "Post", new { id = item.Id })</li>            
+        }
+    </ul>            
+</section>    
+
