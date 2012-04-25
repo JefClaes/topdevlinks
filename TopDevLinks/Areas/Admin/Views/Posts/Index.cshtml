@@ -12,21 +12,21 @@
         <div class="span12">
         <fieldset>          
             <div class="control-group">
-                <label class="control-label" for="input01">@Html.LabelFor(m => m.Url)</label>
+                @Html.LabelFor(m => m.Url, new { @class = "control-label" })
                 <div class="controls">                    
                     @Html.TextBoxFor(m => m.Url, new { @class="input-xlarge", style="width: 97%" })                    
                     @Html.ValidationMessageFor(m => m.Url)
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">@Html.LabelFor(m => m.Title)</label>
+                @Html.LabelFor(m => m.Title, new { @class = "control-label" })
                 <div class="controls">                    
                     @Html.TextBoxFor(m => m.Title, new { @class="input-xlarge", style="width: 97%" })
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">Category</label>
+                <label class="control-label">Category</label>
                 <div class="controls">
                     @Html.DropDownListFor(m => m.SelectedCategoryId, Model.Categories, new { @class = "input-xlarge" })
                 </div>

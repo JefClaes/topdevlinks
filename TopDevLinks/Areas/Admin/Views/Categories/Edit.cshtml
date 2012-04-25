@@ -13,14 +13,14 @@
         <fieldset>          
             @Html.HiddenFor(m => m.Id)
             <div class="control-group">
-                <label class="control-label" for="input01">@Html.LabelFor(m => m.Name)</label>
+                @Html.LabelFor(m => m.Name, new { @class = "control-label" })
                 <div class="controls">                    
                     @Html.TextBoxFor(m => m.Name, new { @class="input-xlarge", style="width: 97%" })                    
                     @Html.ValidationMessageFor(m => m.Name)
                 </div>
             </div>     
             <div class="control-group">
-                <label class="control-label" for="input01">@Html.LabelFor(m => m.Priority)</label>
+                @Html.LabelFor(m => m.Priority, new { @class = "control-label" })
                 <div class="controls">                    
                     @Html.TextBoxFor(m => m.Priority, new { @class="input-xlarge", style="width: 97%" })                    
                     @Html.ValidationMessageFor(m => m.Priority)
