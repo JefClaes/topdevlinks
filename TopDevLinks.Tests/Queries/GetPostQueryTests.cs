@@ -15,6 +15,7 @@ namespace TopDevLinks.Tests.Queries
         private Category _dotNetCategory;
         private Category _nodeCategory;
         private Post _publishedPost;
+        private Post _unpublishedPost;
         private User _user;
         private DateTime _date = new DateTime(2011, 3, 4);
 
@@ -51,6 +52,22 @@ namespace TopDevLinks.Tests.Queries
 
             Assert.IsTrue(publishedPost.Categories.Where(c => c.Name == _dotNetCategory.Name).Count() == 1);
             Assert.IsTrue(publishedPost.Categories.Where(c => c.Name == _nodeCategory.Name).Count() == 1);
+        }
+
+        [Test]
+        public void Query_returns_published_model_by_id()
+        {
+            var model = Execute<PostsViewModel>(new GetPostsQuery(_publishedPost.Id.ToString()));
+
+            Assert.AreEqual(1, model.Posts.Count);            
+        }
+
+        [Test]
+        public void Query_doesnt_return_unpublished_posts_by_id()
+        {
+            var model = Execute<PostsViewModel>(new GetPostsQuery(_unpublishedPost.Id.ToString()));
+
+            Assert.AreEqual(0, model.Posts.Count);
         }
 
         [Test]
@@ -104,14 +121,14 @@ namespace TopDevLinks.Tests.Queries
             _publishedPost.AddLink(new Link(new Uri("http://jclaes.blogspot.com/3"), "Jef Claes link 3", _dotNetCategory.Id, _user.Id));
             _publishedPost.AddLink(new Link(new Uri("http://davybrion.com/1"), "Davy Brion link 1", _nodeCategory.Id, _user.Id));
 
-            var unpublishedPost = new Post();
-            unpublishedPost.PublishDate = _date.AddDays(7);
-            unpublishedPost.Published = false;
-            unpublishedPost.AddLink(new Link(new Uri("http://jefclaes.be/4"), "Jef Claes link 4", _dotNetCategory.Id, _user.Id));
-            unpublishedPost.AddLink(new Link(new Uri("http://davybrion.com/2"), "Davy Brion link 2", _nodeCategory.Id, _user.Id));
+            _unpublishedPost = new Post();
+            _unpublishedPost.PublishDate = _date.AddDays(7);
+            _unpublishedPost.Published = false;
+            _unpublishedPost.AddLink(new Link(new Uri("http://jefclaes.be/4"), "Jef Claes link 4", _dotNetCategory.Id, _user.Id));
+            _unpublishedPost.AddLink(new Link(new Uri("http://davybrion.com/2"), "Davy Brion link 2", _nodeCategory.Id, _user.Id));
 
             EntityStore.Save<Post>(_publishedPost);
-            EntityStore.Save<Post>(unpublishedPost);
+            EntityStore.Save<Post>(_unpublishedPost);
         }
     }
 }

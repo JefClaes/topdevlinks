@@ -19,6 +19,8 @@ namespace TopDevLinks.Controllers
 
         public ActionResult Post(string id)
         {
+            ViewData.Model = Execute(new GetPostsQuery(id));
+
             return View();
         }
 
