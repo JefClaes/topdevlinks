@@ -28,16 +28,27 @@ namespace TopDevLinks.Queries
 
         public override PostsViewModel Execute()
         {
-            var categories = MongoContext.GetCollection<Category>().FindAll();
-            categories.SetSortOrder(SortBy.Descending("Priority"));
-            
+            var categories = GetCategories();
+            var posts = GetPosts();
+
+            return TransformDocumentsToModel(posts, categories);            
+        }
+
+        private MongoCursor<Post> GetPosts()
+        {
             var posts = MongoContext.GetCollection<Post>().Find(BuildPostQuery());
             posts.SetSortOrder(SortBy.Descending("PublishDate"));
             if (_take.HasValue) posts.SetLimit(_take.Value);
 
-            var model = TransformDocumentsToModel(posts, categories);
+            return posts;
+        }
 
-            return model;
+        private MongoCursor<Category> GetCategories()
+        {
+            var categories = MongoContext.GetCollection<Category>().FindAll();
+            categories.SetSortOrder(SortBy.Descending("Priority"));
+
+            return categories;
         }
 
         private static PostsViewModel TransformDocumentsToModel(MongoCursor<Post> posts, MongoCursor<Category> categories)
