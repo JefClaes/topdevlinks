@@ -43,15 +43,18 @@ namespace TopDevLinks.Models.ViewModels
 
     public class PostCategoryViewModel
     {
-        public PostCategoryViewModel(string name)
+        public PostCategoryViewModel(string name, int priority)
         {
             Links = new List<PostLinkViewModel>();
             Name = name;
+            Priority = priority;
         }
 
         public string Name { get; set; }
 
         public IList<PostLinkViewModel> Links { get; set; }
+
+        public int Priority { get; set; }
     }
 
 
