@@ -53,12 +53,12 @@ namespace TopDevLinks.Controllers
                 var content = new StringBuilder();
                 foreach (var category in post.Categories) 
                 {                    
-                    content.Append("<b>" + category.Name + "</b>");
-                    content.Append("<ul>");
+                    content.AppendLine("<b>" + category.Name + "</b>");
+                    content.AppendLine("<ul>");
                     foreach (var link in category.Links)                     
-                        content.Append(string.Format("<li><a href='{0}'>{1}</a></li>", link.Url, link.Title));                    
-                    content.Append("</ul>");
-                    content.Append("<br/>");                 
+                        content.Append(string.Format("<li><a href='{0}'>{1}</a></li>", link.Url, link.Title));
+                    content.AppendLine("</ul>");
+                    content.AppendLine("<br/>");                 
                 }
 
                 items.Add(
