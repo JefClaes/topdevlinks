@@ -157,6 +157,7 @@
     <Compile Include="Infrastructure\MongoContextApiController.cs" />
     <Compile Include="Infrastructure\MongoContextController.cs" />
     <Compile Include="Infrastructure\Query.cs" />
+    <Compile Include="Infrastructure\Web\CDataSyndicationContent.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Entity.cs" />

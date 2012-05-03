@@ -16,11 +16,11 @@ namespace TopDevLinks.Infrastructure.Web
             if (feed == null)
                 throw new NullReferenceException("feed");
 
-            _feed = feed;
+            _feed = feed;            
         }
 
         protected override void WriteFile(HttpResponseBase response)
-        {
+        {            
             using (var writer = XmlWriter.Create(response.OutputStream))            
                 _feed.GetRss20Formatter().WriteTo(writer);            
         }
