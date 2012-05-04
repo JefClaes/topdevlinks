@@ -22,8 +22,11 @@ namespace TopDevLinks.Controllers
                 if (user != null && user.CheckPassword(model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    if (Url.IsLocalUrl(returnUrl) && 
+                        returnUrl.Length > 1 && 
+                        returnUrl.StartsWith("/") && 
+                        !returnUrl.StartsWith("//") && 
+                        !returnUrl.StartsWith("/\\"))
                     {
                         return Redirect(returnUrl);
                     }
