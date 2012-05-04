@@ -29,13 +29,17 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(PostsIndexViewModel inputModel)
         {
-            var model = new PostsIndexViewModel();            
+            var model = new PostsIndexViewModel();
+
+            Uri url;
+            if (!Uri.TryCreate(inputModel.Url, UriKind.Absolute, out url))
+                ModelState.AddModelError("Url", "The Url is not valid.");
 
             if (ModelState.IsValid)
             {
                 // TODO: Fetch UserId from HttpContext
                 var link = new Link(
-                    new Uri(inputModel.Url),
+                    url,
                     inputModel.Title,
                     new ObjectId(inputModel.SelectedCategoryId),
                     new ObjectId("4f8ee5b7fb1e371e880cd88b"));
