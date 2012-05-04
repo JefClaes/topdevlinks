@@ -42,10 +42,7 @@ namespace TopDevLinks.Controllers
 
         public ActionResult Feed()
         {
-            var model = Execute(new GetPostsQuery(published: true));
-
-            if (!model.Posts.Any())
-                return new RssResult(new SyndicationFeed("Test", "Test", null));
+            var model = Execute(new GetPostsQuery(published: true));                            
 
             var items = new List<SyndicationItem>();
             foreach (var post in model.Posts)
@@ -64,19 +61,24 @@ namespace TopDevLinks.Controllers
                 items.Add(
                     new SyndicationItem()
                     {
+                        Id = post.Id,
                         LastUpdatedTime = post.PublishDate.Value,
                         PublishDate = post.PublishDate.Value,                        
                         Title = new TextSyndicationContent(post.PublishDate.Value.ToShortDateString()),
                         Content = new TextSyndicationContent(content.ToString(), TextSyndicationContentKind.Html)
                     }
                 );                
-            }           
+            }
+
+            var lastUpdatedTime = model.Posts.Any() ?
+                model.Posts.OrderByDescending(p => p.PublishDate).First().PublishDate.Value : DateTime.MinValue;
+            var feedUri = new Uri(Url.Action("Feed", "Home", null, Request.Url.Scheme));
             
-            var feed = new SyndicationFeed("Test", "Test", null, "Id", DateTime.Now)
+            var feed = new SyndicationFeed("TopDevLinks", "TopDevLinks feed", feedUri, null, lastUpdatedTime)
             {
-                Language = "English",
-                LastUpdatedTime = model.Posts.OrderByDescending(p => p.PublishDate).Select(p => p.PublishDate).First().Value,
-                Items = items                
+                Language = "eng",                
+                Items = items,
+                BaseUri = feedUri,                
             };            
 
             return new RssResult(feed);

@@ -17,13 +17,16 @@ namespace TopDevLinks.Models.ViewModels
 
     public class PostViewModel
     {
-        public PostViewModel(DateTime? publishDate) 
+        public PostViewModel(string id, DateTime? publishDate) 
         {
             Categories = new List<PostCategoryViewModel>();
             PublishDate = publishDate;
+            Id = id;
         }
 
         public DateTime? PublishDate { get; set; }
+
+        public string Id { get; set; }
 
         public IList<PostCategoryViewModel> Categories { get;set; }
     }

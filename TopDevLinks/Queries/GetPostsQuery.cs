@@ -57,7 +57,7 @@ namespace TopDevLinks.Queries
             
             foreach (var publishedPost in posts)
             {
-                var post = new PostViewModel(publishedPost.PublishDate);
+                var post = new PostViewModel(publishedPost.Id.ToString(), publishedPost.PublishDate);
 
                 foreach (var linkGroup in publishedPost.Links.GroupBy(l => l.CategoryId))
                 {
