@@ -23,10 +23,8 @@ namespace TopDevLinks.Infrastructure
         {
             get {
                 if (_database == null)
-                {
-                    var con = new MongoConnectionStringBuilder(_connectionstring);
-
-                    _database = MongoServer.Create(con).GetDatabase(con.DatabaseName);
+                {                   
+                    _database = MongoDatabase.Create(_connectionstring);
                 }
                 return _database;              
             }
@@ -38,7 +36,7 @@ namespace TopDevLinks.Infrastructure
         }
 
         public MongoContext()
-            : this(ConfigurationManager.ConnectionStrings["topdevlinks"].ConnectionString)
+            : this(ConfigurationManager.AppSettings["MONGOLAB_URI"])
         {
         }
 
