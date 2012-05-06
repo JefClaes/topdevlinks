@@ -22,7 +22,15 @@ namespace TopDevLinks.Infrastructure
 
         public MongoDatabase Database
         {
-            get { return _database ?? (_database = MongoServer.Create(_server).GetDatabase(_databaseName)); }
+            get {
+                if (_database == null)
+                {
+                    var con = new MongoConnectionStringBuilder(ConfigurationManager.ConnectionStrings["topdevlinks"].ConnectionString);
+
+                    _database = MongoServer.Create(con).GetDatabase(con.DatabaseName);
+                }
+                return _database;              
+            }
         }
 
         public MongoContext(string server, string databaseName)
