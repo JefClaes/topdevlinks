@@ -12,12 +12,9 @@ namespace TopDevLinks.Infrastructure
     {
         public AppHbMongoErrorLog(IDictionary config) : base(config) { } 
 
-        public override string ConnectionString
+        public override string  GetConnectionString(IDictionary config)
         {
-            get
-            {
-                return ConfigurationManager.AppSettings["MONGOLAB_URI"];
-            }
-        }
+ 	        return ConfigurationManager.AppSettings["MONGOLAB_URI"] ?? base.GetConnectionString(config);
+        }      
     }
 }
