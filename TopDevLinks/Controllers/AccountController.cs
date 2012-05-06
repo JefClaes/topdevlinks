@@ -18,7 +18,14 @@ namespace TopDevLinks.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = Execute(new FindUserByLoginQuery(model.UserName));               
+                var user = Execute(new FindUserByLoginQuery(model.UserName));
+                if (user != null && !user.Activated)
+                {
+                    ModelState.AddModelError(string.Empty, "This user name is not active anymore.");
+
+                    return View(model);
+                }
+
                 if (user != null && user.CheckPassword(model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
