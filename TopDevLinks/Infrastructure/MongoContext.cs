@@ -16,8 +16,7 @@ namespace TopDevLinks.Infrastructure
             { typeof(Category), "categories" }
         };
 
-        private string _server;
-        private string _databaseName;
+        private string _connectionstring;
         private MongoDatabase _database;
 
         public MongoDatabase Database
@@ -25,7 +24,7 @@ namespace TopDevLinks.Infrastructure
             get {
                 if (_database == null)
                 {
-                    var con = new MongoConnectionStringBuilder(ConfigurationManager.ConnectionStrings["topdevlinks"].ConnectionString);
+                    var con = new MongoConnectionStringBuilder(_connectionstring);
 
                     _database = MongoServer.Create(con).GetDatabase(con.DatabaseName);
                 }
@@ -33,13 +32,13 @@ namespace TopDevLinks.Infrastructure
             }
         }
 
-        public MongoContext(string server, string databaseName)
+        public MongoContext(string connectionstring)
         {
-            _server = server;
-            _databaseName = databaseName;
+            _connectionstring = connectionstring;
         }
 
-        public MongoContext() : this(ConfigurationManager.AppSettings["server"], ConfigurationManager.AppSettings["database"])
+        public MongoContext()
+            : this(ConfigurationManager.ConnectionStrings["topdevlinks"].ConnectionString)
         {
         }
 
