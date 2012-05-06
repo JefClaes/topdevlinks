@@ -37,12 +37,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                // TODO: Fetch UserId from HttpContext
+                var userId = Execute(new FindUserByLoginQuery(HttpContext.User.Identity.Name)).Id;
                 var link = new Link(
                     url,
                     inputModel.Title,
                     new ObjectId(inputModel.SelectedCategoryId),
-                    new ObjectId("4f8ee5b7fb1e371e880cd88b"));
+                    userId);
                 Execute(new AddLinkToUnpublishedPostCommand(link));
                 ModelState.Clear();
             }            

@@ -18,7 +18,7 @@ namespace TopDevLinks.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = Execute(new FindUserByLoginQuery(model.UserName));
+                var user = Execute(new FindUserByLoginQuery(model.UserName));               
                 if (user != null && user.CheckPassword(model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
@@ -34,7 +34,7 @@ namespace TopDevLinks.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError(string.Empty, "The user name or password provided is incorrect.");
             }
 
             return View(model);
