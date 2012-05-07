@@ -34,6 +34,8 @@ namespace TopDevLinks.Areas.Admin.Controllers
             Uri url;
             if (!Uri.TryCreate(inputModel.Url, UriKind.Absolute, out url))
                 ModelState.AddModelError("Url", "The Url is not valid.");
+            if (Execute(new AnyLinkByUriQuery(url)))
+                ModelState.AddModelError("Url", "The url was already submitted.");
 
             if (ModelState.IsValid)
             {

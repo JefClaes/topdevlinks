@@ -70,6 +70,7 @@
     <Compile Include="Infrastructure\EntityStoreTests.cs" />
     <Compile Include="LearningTests\MongoExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\AnyLinkByUriQueryTests.cs" />
     <Compile Include="Queries\FindUserByLoginQueryTests.cs" />
     <Compile Include="Queries\GetPostQueryTests.cs" />
     <Compile Include="Queries\QueryTestFixture.cs" />
