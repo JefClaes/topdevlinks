@@ -23,7 +23,7 @@ namespace TopDevLinks.Queries
         {
             return MongoContext
                 .GetCollection<Post>()
-                .Find(Query.EQ("Links.Uri", _uri.ToString()))
+                .Find(Query.EQ("Links.Uri", _uri.OriginalString))
                 .Any();                
         }
     }
