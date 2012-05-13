@@ -141,7 +141,6 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\Representations\UserRepresentation.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\CategoriesIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\CategoriesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\EditCategoryViewModel.cs" />
@@ -164,7 +163,6 @@
     <Compile Include="Infrastructure\DateTimeProvider.cs" />
     <Compile Include="Infrastructure\EntityStore.cs" />
     <Compile Include="Infrastructure\MongoContext.cs" />
-    <Compile Include="Infrastructure\MongoContextApiController.cs" />
     <Compile Include="Infrastructure\MongoContextController.cs" />
     <Compile Include="Infrastructure\Query.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />

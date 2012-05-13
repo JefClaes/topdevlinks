@@ -51,7 +51,7 @@ namespace TopDevLinks.Tests.Queries
 
         [Test]
         public void Query_returns_true_if_uri_already_in_one_of_the_documents()
-        {           
+        {         
             Assert.AreEqual(true, Execute(new AnyLinkByUriQuery(new Uri("http://davybrion.com"))));
         }
 
