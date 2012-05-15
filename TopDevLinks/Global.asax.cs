@@ -24,6 +24,8 @@ namespace TopDevLinks
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("{folder}/{*pathInfo}", new { folder="Content" });
 
             routes.MapHttpRoute(
                 name: "DefaultApi",
