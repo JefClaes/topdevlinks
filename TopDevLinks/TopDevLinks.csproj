@@ -166,6 +166,7 @@
     <Compile Include="Infrastructure\MongoContextController.cs" />
     <Compile Include="Infrastructure\Query.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />
+    <Compile Include="Mappers\MapperExtensions.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Entities\Link.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Queries\GetCategoriesQuery.cs" />
     <Compile Include="Queries\GetPostsArchiveQuery.cs" />
     <Compile Include="Queries\GetPostsQuery.cs" />
+    <Compile Include="Queries\GetUpcomingPostQuery.cs" />
     <Compile Include="Queries\GetUsersQuery.cs" />
   </ItemGroup>
   <ItemGroup>
