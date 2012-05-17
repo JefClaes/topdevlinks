@@ -16,7 +16,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
         {
             ViewData.Model = new PostsIndexViewModel()
             {
-                Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name"),
+                Categories = new SelectList(Execute(new GetPrioritizedCategoriesQuery()), "Id", "Name"),
                 UpcomingPost = Execute(new GetUpcomingPostQuery())
             };
             
@@ -47,7 +47,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
             }            
 
             // TODO: get rid of this and use PRG
-            model.Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name");
+            model.Categories = new SelectList(Execute(new GetPrioritizedCategoriesQuery()), "Id", "Name");
             model.UpcomingPost = Execute(new GetUpcomingPostQuery());
             
             ViewData.Model = model;

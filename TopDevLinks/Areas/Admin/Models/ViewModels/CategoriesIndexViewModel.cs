@@ -8,7 +8,7 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
 {
     public class CategoriesIndexViewModel
     {
-        public CategoriesViewModel Categories { get; set; }
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
 
         [Required]
         public string Name { get; set; }

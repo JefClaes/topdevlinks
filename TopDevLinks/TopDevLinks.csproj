@@ -142,7 +142,7 @@
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\CategoriesIndexViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\ViewModels\CategoriesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\PostsIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UsersIndexViewModel.cs" />
@@ -178,7 +178,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\AnyLinkByUriQuery.cs" />
     <Compile Include="Queries\FindUserByLoginQuery.cs" />
-    <Compile Include="Queries\GetCategoriesQuery.cs" />
     <Compile Include="Queries\GetPostsArchiveQuery.cs" />
     <Compile Include="Queries\GetPostsQuery.cs" />
     <Compile Include="Queries\GetPrioritizedCategoriesQuery.cs" />

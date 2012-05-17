@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using MongoDB.Bson;
 using TopDevLinks.Areas.Admin.Models.ViewModels;
 using TopDevLinks.Commands;
@@ -12,8 +13,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {       
         public ActionResult Index()
         {
-            ViewData.Model = new CategoriesIndexViewModel() { Categories = Execute(new GetCategoriesQuery()) };
-
+            ViewData.Model = new CategoriesIndexViewModel
+                                 {
+                                     Categories = Execute(new GetPrioritizedCategoriesQuery())
+                                         .Select(c => new CategoryViewModel(c.Id.ToString(), c.Name, c.Priority))
+                                 };
+                
             return View();
         }
 
@@ -27,7 +32,12 @@ namespace TopDevLinks.Areas.Admin.Controllers
                 ModelState.Clear();
             }
 
-            ViewData.Model = new CategoriesIndexViewModel() { Categories = Execute(new GetCategoriesQuery()) };
+            // TODO: get rid of this and use PRG
+            ViewData.Model = new CategoriesIndexViewModel
+            {
+                Categories = Execute(new GetPrioritizedCategoriesQuery())
+                    .Select(c => new CategoryViewModel(c.Id.ToString(), c.Name, c.Priority))
+            };
 
             return View();
         }
