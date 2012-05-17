@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MongoDB.Driver.Builders;
+﻿using MongoDB.Driver.Builders;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 
@@ -12,16 +8,13 @@ namespace TopDevLinks.Commands
     {
         public override void Execute()
         {
-            var unpublishedPosts = MongoContext.GetCollection<Post>().Find(Query.EQ("Published", false));
+            var upcomingPost = MongoContext.GetCollection<Post>().FindOne(Query.EQ("Published", false));
 
-            foreach (var unpublishedPost in unpublishedPosts)
-            {
-                unpublishedPost.Published = true;
-                unpublishedPost.PublishDate = DateTimeProvider.Now;
-                EntityStore.Save<Post>(unpublishedPost);
-            }            
+            upcomingPost.Published = true;
+            upcomingPost.PublishDate = DateTimeProvider.Now;
+            EntityStore.Save(upcomingPost);
 
-            EntityStore.Save<Post>(new Post() { Published = false });
+            Execute(new EnsureUpcomingPostExistsCommand());
         }
     }
 }

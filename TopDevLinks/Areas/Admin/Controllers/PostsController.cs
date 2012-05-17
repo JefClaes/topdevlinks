@@ -14,6 +14,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {      
         public ActionResult Index()
         {
+            Execute(new EnsureUpcomingPostExistsCommand());
             ViewData.Model = new PostsIndexViewModel()
             {
                 Categories = new SelectList(Execute(new GetPrioritizedCategoriesQuery()), "Id", "Name"),
