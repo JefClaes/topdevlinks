@@ -73,6 +73,8 @@
     <Compile Include="Queries\AnyLinkByUriQueryTests.cs" />
     <Compile Include="Queries\FindUserByLoginQueryTests.cs" />
     <Compile Include="Queries\GetPostQueryTests.cs" />
+    <Compile Include="Queries\GetPrioritizedCategoriesQueryTests.cs" />
+    <Compile Include="Queries\GetUpcomingPostQueryTests.cs" />
     <Compile Include="Queries\QueryTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>

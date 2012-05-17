@@ -32,15 +32,6 @@ namespace TopDevLinks.Tests.Queries
             Assert.IsTrue(model.Posts.Count == 1);
         }
 
-        // TODO: get rid of this and cover the scenario with dedicated tests for GetUnpublishedPost query
-        //[Test]
-        //public void Query_returns_one_unpublished_post()
-        //{
-        //    var model = Execute<PostsViewModel>(new GetPostsQuery(published: false));
-
-        //    Assert.IsTrue(model.Posts.Count == 1);
-        //}
-
         [Test]
         public void Query_returns_model_with_correct_categories()
         {

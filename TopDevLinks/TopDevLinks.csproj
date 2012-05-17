@@ -181,6 +181,7 @@
     <Compile Include="Queries\GetCategoriesQuery.cs" />
     <Compile Include="Queries\GetPostsArchiveQuery.cs" />
     <Compile Include="Queries\GetPostsQuery.cs" />
+    <Compile Include="Queries\GetPrioritizedCategoriesQuery.cs" />
     <Compile Include="Queries\GetUpcomingPostQuery.cs" />
     <Compile Include="Queries\GetUsersQuery.cs" />
   </ItemGroup>

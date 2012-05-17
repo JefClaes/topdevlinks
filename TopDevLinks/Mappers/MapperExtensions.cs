@@ -9,31 +9,37 @@ namespace TopDevLinks.Mappers
     {
         public static PostsViewModel MapToPostsViewModel(this IEnumerable<Post> posts, IEnumerable<Category> categories)
         {
-            var model = new PostsViewModel();
+            var postsViewModel = new PostsViewModel();
 
             foreach (var publishedPost in posts)
             {
-                var post = new PostViewModel(publishedPost.Id.ToString(), publishedPost.PublishDate);
-
-                foreach (var linkGroup in publishedPost.Links.GroupBy(l => l.CategoryId))
-                {
-                    var mappingCategory = categories.FirstOrDefault(c => c.Id == linkGroup.Key);
-                    var category = new PostCategoryViewModel(mappingCategory.Name, mappingCategory.Priority)
-                    {
-                        Links = publishedPost.Links
-                            .Where(l => l.CategoryId == linkGroup.Key)
-                            .Select(l => new PostLinkViewModel(l.Title, l.Uri.AbsoluteUri))
-                            .ToList()
-                    };
-
-                    post.Categories.Add(category);
-                    post.Categories = post.Categories.OrderByDescending(c => c.Priority).ToList();
-                }
-
-                model.Posts.Add(post);
+                postsViewModel.Posts.Add(publishedPost.MapToPostViewModel(categories));
             }
 
-            return model;
+            return postsViewModel;
+        }
+
+        public static PostViewModel MapToPostViewModel(this Post post, IEnumerable<Category> categories)
+        {
+            var postViewModel = new PostViewModel(post.Id.ToString(), post.PublishDate);
+
+            foreach (var linkGroup in post.Links.GroupBy(l => l.CategoryId))
+            {
+                var mappingCategory = categories.FirstOrDefault(c => c.Id == linkGroup.Key);
+                // TODO: make sure we're protected against missing categories... shouldn't happen, but we don't have referential integrity like in a relational DB
+                var category = new PostCategoryViewModel(mappingCategory.Name, mappingCategory.Priority)
+                {
+                    Links = post.Links
+                        .Where(l => l.CategoryId == linkGroup.Key)
+                        .Select(l => new PostLinkViewModel(l.Title, l.Uri.AbsoluteUri))
+                        .ToList()
+                };
+
+                postViewModel.Categories.Add(category);
+                postViewModel.Categories = postViewModel.Categories.OrderByDescending(c => c.Priority).ToList();
+            }
+
+            return postViewModel;
         }
     }
 }

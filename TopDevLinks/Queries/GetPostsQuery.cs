@@ -25,7 +25,7 @@ namespace TopDevLinks.Queries
 
         public override PostsViewModel Execute()
         {
-            return GetPosts().MapToPostsViewModel(GetCategories());
+            return GetPosts().MapToPostsViewModel(Execute(new GetPrioritizedCategoriesQuery()));
         }
 
         private MongoCursor<Post> GetPosts()
@@ -35,14 +35,6 @@ namespace TopDevLinks.Queries
             if (_take.HasValue) posts.SetLimit(_take.Value);
 
             return posts;
-        }
-
-        private MongoCursor<Category> GetCategories()
-        {
-            var categories = MongoContext.GetCollection<Category>().FindAll();
-            categories.SetSortOrder(SortBy.Descending("Priority"));
-
-            return categories;
         }
 
         private IMongoQuery BuildPostQuery()
