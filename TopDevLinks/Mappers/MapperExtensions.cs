@@ -21,6 +21,8 @@ namespace TopDevLinks.Mappers
 
         public static PostViewModel MapToPostViewModel(this Post post, IEnumerable<Category> categories)
         {
+            if (post == null) return null;
+
             var postViewModel = new PostViewModel(post.Id.ToString(), post.PublishDate);
 
             foreach (var linkGroup in post.Links.GroupBy(l => l.CategoryId))

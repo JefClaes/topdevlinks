@@ -31,5 +31,12 @@ namespace TopDevLinks.Tests.Queries
             var upcomingPost = Execute(new GetUpcomingPostQuery());
             Assert.AreEqual(_unpublishedPost.Id.ToString(), upcomingPost.Id);
         }
+
+        [Test]
+        public void Query_returns_null_if_no_unpublished_post_exists()
+        {
+            MongoContext.GetCollection<Post>().Drop();
+            Assert.IsNull(Execute(new GetUpcomingPostQuery()));
+        }
     }
 }
