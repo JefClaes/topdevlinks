@@ -17,6 +17,6 @@ namespace TopDevLinks.Areas.Admin.Models.ViewModels
         [Required]
         public string SelectedCategoryId { get; set; }
 
-        public PostsViewModel UnpublishedPosts { get; set; }
+        public PostViewModel UpcomingPost { get; set; }
     }
 }

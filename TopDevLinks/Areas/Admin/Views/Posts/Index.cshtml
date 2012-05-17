@@ -38,27 +38,25 @@
         </div>        
     }         
 </div>
-@foreach (var post in Model.UnpublishedPosts.Posts)
-{
-    <section>       
 
-        @foreach (var category in post.Categories)
-        {
-            <div class="row">
-                <div class="span12">
-                    <h3>@category.Name</h3>
-                    <ul>
-                        @foreach (var link in category.Links)
-                        {                           
-                            <li><a href="@link.Url">@link.Title</a></li>                       
-                        }
-                    </ul>
-                </div>
-            </div>            
-        }
+<section>       
 
-    </section>    
-}
+    @foreach (var category in Model.UpcomingPost.Categories)
+    {
+        <div class="row">
+            <div class="span12">
+                <h3>@category.Name</h3>
+                <ul>
+                    @foreach (var link in category.Links)
+                    {                           
+                        <li><a href="@link.Url">@link.Title</a></li>                       
+                    }
+                </ul>
+            </div>
+        </div>            
+    }
+
+</section>    
 
 <div class="row">
     @using (Html.BeginForm("Publish", "Posts", FormMethod.Post))

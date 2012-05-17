@@ -14,14 +14,10 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {      
         public ActionResult Index()
         {
-            var categories = Execute(new GetCategoriesQuery());
-            // TODO: replace with command that creates unpublished post if it doesn't exist yet, and then query the one unpublished post
-            var unpublishedPosts = Execute(new GetPostsQuery());
-
             ViewData.Model = new PostsIndexViewModel()
             {
-                Categories = new SelectList(categories.Items, "Id", "Name"),
-                UnpublishedPosts = unpublishedPosts
+                Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name"),
+                UpcomingPost = Execute(new GetUpcomingPostQuery())
             };
             
             return View();
@@ -50,9 +46,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
                 ModelState.Clear();
             }            
 
+            // TODO: get rid of this and use PRG
             model.Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name");
-            // TODO: replace with command that creates unpublished post if it doesn't exist yet, and then query the one unpublished post
-            model.UnpublishedPosts = Execute(new GetPostsQuery());
+            model.UpcomingPost = Execute(new GetUpcomingPostQuery());
             
             ViewData.Model = model;
 
