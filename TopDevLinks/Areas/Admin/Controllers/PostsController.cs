@@ -15,7 +15,8 @@ namespace TopDevLinks.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var categories = Execute(new GetCategoriesQuery());
-            var unpublishedPosts = Execute(new GetPostsQuery(published: false));
+            // TODO: replace with command that creates unpublished post if it doesn't exist yet, and then query the one unpublished post
+            var unpublishedPosts = Execute(new GetPostsQuery());
 
             ViewData.Model = new PostsIndexViewModel()
             {
@@ -50,7 +51,8 @@ namespace TopDevLinks.Areas.Admin.Controllers
             }            
 
             model.Categories = new SelectList(Execute(new GetCategoriesQuery()).Items, "Id", "Name");
-            model.UnpublishedPosts = Execute(new GetPostsQuery(published: false));
+            // TODO: replace with command that creates unpublished post if it doesn't exist yet, and then query the one unpublished post
+            model.UnpublishedPosts = Execute(new GetPostsQuery());
             
             ViewData.Model = model;
 

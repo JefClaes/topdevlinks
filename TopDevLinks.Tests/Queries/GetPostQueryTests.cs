@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using TopDevLinks.Models.Entities;
-using MongoDB.Driver.Builders;
 using TopDevLinks.Models.ViewModels;
 using TopDevLinks.Queries;
 
@@ -30,23 +27,24 @@ namespace TopDevLinks.Tests.Queries
         [Test]
         public void Query_returns_one_published_post()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
+            var model = Execute<PostsViewModel>(new GetPostsQuery());
 
             Assert.IsTrue(model.Posts.Count == 1);
         }
 
-        [Test]
-        public void Query_returns_one_unpublished_post()
-        {
-            var model = Execute<PostsViewModel>(new GetPostsQuery(published: false));
+        // TODO: get rid of this and cover the scenario with dedicated tests for GetUnpublishedPost query
+        //[Test]
+        //public void Query_returns_one_unpublished_post()
+        //{
+        //    var model = Execute<PostsViewModel>(new GetPostsQuery(published: false));
 
-            Assert.IsTrue(model.Posts.Count == 1);
-        }
+        //    Assert.IsTrue(model.Posts.Count == 1);
+        //}
 
         [Test]
         public void Query_returns_model_with_correct_categories()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
+            var model = Execute<PostsViewModel>(new GetPostsQuery());
 
             var publishedPost = model.Posts.Single();
 
@@ -73,7 +71,7 @@ namespace TopDevLinks.Tests.Queries
         [Test]
         public void Query_returns_model_with_correct_number_of_links()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true));
+            var model = Execute<PostsViewModel>(new GetPostsQuery());
 
             var publishedPost = model.Posts.Single();
 
@@ -84,7 +82,7 @@ namespace TopDevLinks.Tests.Queries
         [Test]
         public void Query_returns_one_model_when_take_is_set_to_one()
         {
-            var model = Execute<PostsViewModel>(new GetPostsQuery(published: true, take: 1));
+            var model = Execute<PostsViewModel>(new GetPostsQuery(take: 1));
 
             Assert.AreEqual(1, model.Posts.Count);
         }

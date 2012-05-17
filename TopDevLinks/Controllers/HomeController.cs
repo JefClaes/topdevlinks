@@ -6,9 +6,7 @@ using System.Linq;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Infrastructure.Web;
 using TopDevLinks.Queries;
-using System.IO;
 using System.Text;
-using System.Web;
 
 namespace TopDevLinks.Controllers
 {
@@ -16,7 +14,7 @@ namespace TopDevLinks.Controllers
     {
         public ActionResult Index()
         {
-            ViewData.Model = Execute(new GetPostsQuery(published: true, take: 3));
+            ViewData.Model = Execute(new GetPostsQuery(take: 3));
 
             return View();
         }
@@ -42,7 +40,7 @@ namespace TopDevLinks.Controllers
 
         public ActionResult Feed()
         {
-            var model = Execute(new GetPostsQuery(published: true));                            
+            var model = Execute(new GetPostsQuery());                            
 
             var items = new List<SyndicationItem>();
             foreach (var post in model.Posts)

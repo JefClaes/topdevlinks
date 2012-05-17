@@ -10,19 +10,16 @@ namespace TopDevLinks.Queries
 {
     public class GetPostsQuery : Query<PostsViewModel>
     {
-        private bool _published;
         private int? _take;
         private string _id;
 
-        public GetPostsQuery(bool published, int? take = null)
+        public GetPostsQuery(int? take = null)
         {
-            _published = published;
             _take = take;
         }
 
         public GetPostsQuery(string id)
         {
-            _published = true;
             _id = id;
         }
 
@@ -85,7 +82,7 @@ namespace TopDevLinks.Queries
             IMongoQuery idQuery = null;
             IMongoQuery query = null;
 
-            var publishedQuery = Query.EQ("Published", _published);
+            var publishedQuery = Query.EQ("Published", true);
             if (!string.IsNullOrEmpty(_id)) idQuery = Query.EQ("_id", new ObjectId(_id));
 
             query = idQuery != null ? Query.And(idQuery, publishedQuery) : publishedQuery;
