@@ -18,8 +18,16 @@ namespace TopDevLinks.Tests.Queries
         }
 
         [Test]
-        public void Query_Returns_Unpublished_Post()
+        public void Query_returns_unpublished_post()
         {
+            var upcomingPost = Execute(new GetUpcomingPostQuery());
+            Assert.AreEqual(_unpublishedPost.Id.ToString(), upcomingPost.Id);
+        }
+
+        [Test]
+        public void Query_returns_first_unpublished_post_if_multiple_exist()
+        {
+            EntityStore.Save(new Post() {Published = false});
             var upcomingPost = Execute(new GetUpcomingPostQuery());
             Assert.AreEqual(_unpublishedPost.Id.ToString(), upcomingPost.Id);
         }
