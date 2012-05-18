@@ -32,14 +32,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
                 ModelState.Clear();
             }
 
-            // TODO: get rid of this and use PRG
-            ViewData.Model = new CategoriesIndexViewModel
-            {
-                Categories = Execute(new GetPrioritizedCategoriesQuery())
-                    .Select(c => new CategoryViewModel(c.Id.ToString(), c.Name, c.Priority))
-            };
-
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(string id)

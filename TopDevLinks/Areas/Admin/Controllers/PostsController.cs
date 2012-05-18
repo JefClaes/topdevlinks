@@ -27,8 +27,6 @@ namespace TopDevLinks.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(PostsIndexViewModel inputModel)
         {
-            var model = new PostsIndexViewModel();
-
             Uri url;
             if (!Uri.TryCreate(inputModel.Url, UriKind.Absolute, out url))
                 ModelState.AddModelError("Url", "The Url is not valid.");
@@ -45,15 +43,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
                     userId);
                 Execute(new AddLinkToUnpublishedPostCommand(link));
                 ModelState.Clear();
-            }            
+            }
 
-            // TODO: get rid of this and use PRG
-            model.Categories = new SelectList(Execute(new GetPrioritizedCategoriesQuery()), "Id", "Name");
-            model.UpcomingPost = Execute(new GetUpcomingPostQuery());
-            
-            ViewData.Model = model;
-
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
