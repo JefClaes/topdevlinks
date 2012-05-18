@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using TopDevLinks.Areas.Admin.Models.ViewModels;
 using TopDevLinks.Commands;
 using TopDevLinks.Infrastructure;
+using TopDevLinks.Infrastructure.Web;
 using TopDevLinks.Models.Entities;
 using TopDevLinks.Queries;
 
@@ -11,13 +12,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
 {
     public class CategoriesController : MongoContextController
     {       
+        [RestoreModelStateFromTempData]
         public ActionResult Index()
         {
-            if (TempData.ContainsKey("ModelState"))
-            {
-                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
-            }
-
             ViewData.Model = new CategoriesIndexViewModel
                                  {
                                      Categories = Execute(new GetPrioritizedCategoriesQuery())
@@ -28,16 +25,13 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [SetTempDataWhenModelStateInvalid]
         public ActionResult Index(CategoriesIndexViewModel inputModel)
         {
             if (ModelState.IsValid)
             {
                 Execute(new AddCategoryCommand(
                     inputModel.Name, inputModel.Priority.HasValue ? inputModel.Priority.Value : 0));
-            }
-            else
-            {
-                TempData["ModelState"] = ModelState;
             }
 
             return RedirectToAction("Index");

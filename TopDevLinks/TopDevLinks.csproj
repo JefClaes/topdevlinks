@@ -166,7 +166,9 @@
     <Compile Include="Infrastructure\MongoContext.cs" />
     <Compile Include="Infrastructure\MongoContextController.cs" />
     <Compile Include="Infrastructure\Query.cs" />
+    <Compile Include="Infrastructure\Web\RestoreModelStateFromTempDataAttribute.cs" />
     <Compile Include="Infrastructure\Web\RssResult.cs" />
+    <Compile Include="Infrastructure\Web\SetTempDataWhenModelStateInvalidAttribute.cs" />
     <Compile Include="Mappers\MapperExtensions.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Entity.cs" />

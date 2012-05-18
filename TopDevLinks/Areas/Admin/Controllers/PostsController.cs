@@ -2,6 +2,7 @@
 using TopDevLinks.Areas.Admin.Models.ViewModels;
 using TopDevLinks.Commands;
 using TopDevLinks.Infrastructure;
+using TopDevLinks.Infrastructure.Web;
 using TopDevLinks.Models.Entities;
 using TopDevLinks.Queries;
 using MongoDB.Bson;
@@ -12,13 +13,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
     [Authorize]
     public class PostsController : MongoContextController
     {      
+        [RestoreModelStateFromTempData]
         public ActionResult Index()
         {
-            if (TempData.ContainsKey("ModelState"))
-            {
-                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
-            }
-
             Execute(new EnsureUpcomingPostExistsCommand());
             ViewData.Model = new PostsIndexViewModel()
             {
@@ -30,6 +27,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [SetTempDataWhenModelStateInvalid]
         public ActionResult Index(PostsIndexViewModel inputModel)
         {
             Uri url;
@@ -47,10 +45,6 @@ namespace TopDevLinks.Areas.Admin.Controllers
                     new ObjectId(inputModel.SelectedCategoryId),
                     userId);
                 Execute(new AddLinkToUnpublishedPostCommand(link));
-            }
-            else
-            {
-                TempData["ModelState"] = ModelState;
             }
 
             return RedirectToAction("Index");
