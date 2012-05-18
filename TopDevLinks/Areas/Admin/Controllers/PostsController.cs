@@ -14,6 +14,11 @@ namespace TopDevLinks.Areas.Admin.Controllers
     {      
         public ActionResult Index()
         {
+            if (TempData.ContainsKey("ModelState"))
+            {
+                ModelState.Merge((ModelStateDictionary)TempData["ModelState"]);
+            }
+
             Execute(new EnsureUpcomingPostExistsCommand());
             ViewData.Model = new PostsIndexViewModel()
             {
@@ -42,7 +47,10 @@ namespace TopDevLinks.Areas.Admin.Controllers
                     new ObjectId(inputModel.SelectedCategoryId),
                     userId);
                 Execute(new AddLinkToUnpublishedPostCommand(link));
-                ModelState.Clear();
+            }
+            else
+            {
+                TempData["ModelState"] = ModelState;
             }
 
             return RedirectToAction("Index");
