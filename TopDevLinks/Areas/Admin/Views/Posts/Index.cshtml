@@ -8,20 +8,21 @@
     <h1>Next edition</h1>    
 </div>
 <div class="row">    
-    @using (Html.BeginForm("Index", "Posts", FormMethod.Post, new { @class="form-horizontal" } )) {    
+    @using (Html.BeginForm("Index", "Posts", FormMethod.Post, new { @class = "form-horizontal" }))
+    {    
         <div class="span12">
         <fieldset>          
             <div class="control-group">
                 @Html.LabelFor(m => m.Url, new { @class = "control-label" })
                 <div class="controls">                    
-                    @Html.TextBoxFor(m => m.Url, new { @class="input-xlarge", style="width: 97%" })                    
+                    @Html.TextBoxFor(m => m.Url, new { @class = "input-xlarge", style = "width: 97%" })                    
                     @Html.ValidationMessageFor(m => m.Url)
                 </div>
             </div>
             <div class="control-group">
                 @Html.LabelFor(m => m.Title, new { @class = "control-label" })
                 <div class="controls">                    
-                    @Html.TextBoxFor(m => m.Title, new { @class="input-xlarge", style="width: 97%" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "input-xlarge", style = "width: 97%" })
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>
             </div>
@@ -43,17 +44,42 @@
 
     @foreach (var category in Model.UpcomingPost.Categories)
     {
-        <div class="row">
-            <div class="span12">
-                <h3>@category.Name</h3>
-                <ul>
-                    @foreach (var link in category.Links)
-                    {                           
-                        <li><a href="@link.Url">@link.Title</a></li>                       
-                    }
-                </ul>
-            </div>
-        </div>            
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>@category.Name</th>                             
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var link in category.Links)
+                {
+                    <tr>                               
+                        @{ var cssclass = @link.Flagged ? "flagged" : string.Empty; }
+                        <td><a href="@link.Url" class="@cssclass">@link.Title</a></td>                                
+                        <td>                            
+                            @if (@link.Flagged)
+                            {
+                                using (Html.BeginForm("", "", new { id = link.Id }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-success">Unflag</button>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("", "", new { id = link.Id }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-warning">Flag</button>
+                                }
+                            }
+                            @using (Html.BeginForm("", "", new { id = link.Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>           
     }
 
 </section>    

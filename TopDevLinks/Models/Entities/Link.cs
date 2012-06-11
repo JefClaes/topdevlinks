@@ -3,12 +3,13 @@ using MongoDB.Bson;
 
 namespace TopDevLinks.Models.Entities
 {
-    public class Link : IEquatable<Link>
+    public class Link : Entity, IEquatable<Link>
     {
         public Uri Uri { get; private set; }
         public string Title { get; private set; }
         public ObjectId CategoryId { get; private set; }
         public ObjectId UserId { get; private set; }
+        public bool Flagged { get; private set; }
 
         public Link(Uri uri, string title, ObjectId categoryId, ObjectId userId)
         {
@@ -21,6 +22,12 @@ namespace TopDevLinks.Models.Entities
             Title = title;
             CategoryId = categoryId;
             UserId = userId;
+            Flagged = false;
+        }
+
+        public void Flag(bool on) 
+        {
+            Flagged = on;
         }
 
         public bool Equals(Link other)

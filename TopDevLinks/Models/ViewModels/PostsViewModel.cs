@@ -31,15 +31,21 @@ namespace TopDevLinks.Models.ViewModels
 
     public class PostLinkViewModel
     {
-        public PostLinkViewModel(string title, string url)
+        public PostLinkViewModel(string id, string title, string url, bool flagged)
         {
+            Id = id;
             Title = title;
-            Url = url;            
+            Url = url;
+            Flagged = flagged;
         }
+
+        public string Id { get; set; }
 
         public string Title { get; set; }
 
         public string Url { get; set; }
+
+        public bool Flagged { get; set; }
     }
 
     public class PostCategoryViewModel

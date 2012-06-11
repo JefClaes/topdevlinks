@@ -33,7 +33,7 @@ namespace TopDevLinks.Mappers
                 {
                     Links = post.Links
                         .Where(l => l.CategoryId == linkGroup.Key)
-                        .Select(l => new PostLinkViewModel(l.Title, l.Uri.AbsoluteUri))
+                        .Select(l => new PostLinkViewModel(l.Id.ToString(), l.Title, l.Uri.AbsoluteUri, l.Flagged))
                         .ToList()
                 };
 
