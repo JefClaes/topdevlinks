@@ -60,14 +60,10 @@
                           
                             @using (Html.BeginForm("ToggleFlagLink", "Posts", new { postId = Model.UpcomingPost.Id, linkId = link.Id }, FormMethod.Post))
                             {
-                                if (@link.Flagged)
-                                {
-                                    <button type="submit" class="btn btn-success">Unflag</button>
-                                } 
-                                else 
-                                {
-                                    <button type="submit" class="btn btn-warning">Flag</button>                                                   
-                                }
+                                string buttonText = link.Flagged ? "Unflag" : "Flag";
+                                string buttonClass = link.Flagged ? "btn btn-success" : "btn btn-warning";                                
+                               
+                               <button type="submit" class="@buttonClass">@buttonText</button>                               
                             }
                               
                             @using (Html.BeginForm("DeleteLink", "Posts", new { postId = Model.UpcomingPost.Id, linkId = link.Id }, FormMethod.Post))
