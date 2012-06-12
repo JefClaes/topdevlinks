@@ -190,7 +190,6 @@
     <Compile Include="Queries\GetUsersQuery.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap\bootstrap-custom.css" />
     <Content Include="Content\bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />

@@ -12,26 +12,26 @@ namespace TopDevLinks.Tests.Infrastructure
     [TestFixture]
     public class EntityStoreTests
     {
-        private MongoContext _mongoContext;
+        private MongoTestContext _mongoContext;
         private EntityStore _entityStore;
 
         public EntityStoreTests()
         {
-            _mongoContext = new MongoContext();
+            _mongoContext = new MongoTestContext();
             _entityStore = new EntityStore(_mongoContext);
         }
 
         [SetUp]
         public void SetUp()
         {
-            _mongoContext.Database.GetCollection("posts").RemoveAll();
-            _mongoContext.Database.GetCollection("posts").CreateIndex(new IndexKeysBuilder().Ascending("PublishDate"),
+            _mongoContext.GetCollection<Post>().RemoveAll();
+            _mongoContext.GetCollection<Post>().CreateIndex(new IndexKeysBuilder().Ascending("PublishDate"),
                                                         new IndexOptionsBuilder().SetUnique(true));
         }
 
         private Post GetPost(ObjectId id)
         {
-            return _mongoContext.Database.GetCollection<Post>("posts").Find(Query.EQ("_id", id)).FirstOrDefault();
+            return _mongoContext.GetCollection<Post>().Find(Query.EQ("_id", id)).FirstOrDefault();
         }
 
         [Test]
@@ -94,14 +94,14 @@ namespace TopDevLinks.Tests.Infrastructure
             _entityStore.UnsafeSave(post1);
             _entityStore.UnsafeSave(post2);
 
-            Assert.AreEqual(1, _mongoContext.Database.GetCollection("posts").FindAll().Count());
+            Assert.AreEqual(1, _mongoContext.GetCollection<Post>().FindAll().Count());
         }
 
         [Test]
         public void Get_can_retrieve_existing_document()
         {
             var post = new Post();
-            _mongoContext.Database.GetCollection("posts").Save(post);
+            _mongoContext.GetCollection<Post>().Save(post);
 
             Assert.IsNotNull(_entityStore.Get<Post>(post.Id));
         }
@@ -110,7 +110,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void Remove_can_remove_existing_document_by_reference()
         {
             var post = new Post();
-            _mongoContext.Database.GetCollection("posts").Save(post);
+            _mongoContext.GetCollection<Post>().Save(post);
 
             _entityStore.Remove(post);
 
@@ -121,7 +121,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void Remove_can_remove_existing_document_by_id()
         {
             var post = new Post();
-            _mongoContext.Database.GetCollection("posts").Save(post);
+            _mongoContext.GetCollection<Post>().Save(post);
 
             _entityStore.Remove<Post>(post.Id);
 
@@ -132,7 +132,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void UnsafeRemove_can_remove_existing_document_by_reference()
         {
             var post = new Post();
-            _mongoContext.Database.GetCollection("posts").Save(post);
+            _mongoContext.GetCollection<Post>().Save(post);
 
             _entityStore.UnsafeRemove(post);
 
@@ -143,7 +143,7 @@ namespace TopDevLinks.Tests.Infrastructure
         public void UnsafeRemove_can_remove_existing_document_by_id()
         {
             var post = new Post();
-            _mongoContext.Database.GetCollection("posts").Save(post);
+            _mongoContext.GetCollection<Post>().Save(post);
 
             _entityStore.UnsafeRemove<Post>(post.Id);
 
@@ -153,8 +153,8 @@ namespace TopDevLinks.Tests.Infrastructure
         [Test]
         public void Get_returns_all_the_documents()
         {
-            _mongoContext.Database.GetCollection("posts").Save(new Post() { Published = true, PublishDate = DateTime.Now });
-            _mongoContext.Database.GetCollection("posts").Save(new Post() { Published = true, PublishDate = DateTime.Now.AddDays(7) });
+            _mongoContext.GetCollection<Post>().Save(new Post() { Published = true, PublishDate = DateTime.Now });
+            _mongoContext.GetCollection<Post>().Save(new Post() { Published = true, PublishDate = DateTime.Now.AddDays(7) });
 
             var posts = _entityStore.Get<Post>();
 

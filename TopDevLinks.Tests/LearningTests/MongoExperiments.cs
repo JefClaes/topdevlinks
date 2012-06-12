@@ -14,7 +14,7 @@ namespace TopDevLinks.Tests.LearningTests
     [Explicit]
     public class MongoExperiments : QueryTestFixture
     {
-        private MongoContext _mongoContext = new MongoContext();
+        private MongoTestContext _mongoContext = new MongoTestContext();
 
         [SetUp]
         public void SetUp()

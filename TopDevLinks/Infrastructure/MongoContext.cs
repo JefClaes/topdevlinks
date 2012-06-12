@@ -8,13 +8,13 @@ namespace TopDevLinks.Infrastructure
 {
     public class MongoContext
     {
-        private static readonly Dictionary<Type, string> _collectionMap = new Dictionary<Type, string>
-        {
-            // add a Type with its collection name here for every Document stored in a collection
-            { typeof(Post), "posts" },
-            { typeof(User), "users" },
-            { typeof(Category), "categories" }
-        };
+        private static Dictionary<Type, string> _collectionMap = new Dictionary<Type, string>
+                {
+                    // add a Type with its collection name here for every Document stored in a collection
+                    { typeof(Post), "posts" },
+                    { typeof(User), "users" },
+                    { typeof(Category), "categories" }
+                };
 
         private string _connectionstring;
         private MongoDatabase _database;
@@ -35,10 +35,16 @@ namespace TopDevLinks.Infrastructure
             _connectionstring = connectionstring;
         }
 
+        public MongoContext(Dictionary<Type, string> collectionMap)
+            : this(ConfigurationManager.AppSettings["MONGOLAB_URI"])
+        {
+            _collectionMap = collectionMap;
+        }
+
         public MongoContext()
             : this(ConfigurationManager.AppSettings["MONGOLAB_URI"])
         {
-        }
+        }       
 
         public MongoCollection<T> GetCollection<T>()
         {

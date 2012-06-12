@@ -8,12 +8,12 @@ namespace TopDevLinks.Tests.Commands
 {    
    public abstract class CommandTestFixture
     {
-        protected MongoContext MongoContext { get; private set; }
+        protected MongoTestContext MongoContext { get; private set; }
         protected EntityStore EntityStore { get; private set; }
 
         protected CommandTestFixture()
         {
-            MongoContext = new MongoContext();
+            MongoContext = new MongoTestContext();
             EntityStore = new EntityStore(MongoContext);
         }
 

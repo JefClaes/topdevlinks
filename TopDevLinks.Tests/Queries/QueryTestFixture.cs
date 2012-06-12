@@ -4,12 +4,12 @@ namespace TopDevLinks.Tests.Queries
 {
     public abstract class QueryTestFixture
     {
-        protected MongoContext MongoContext { get; private set; }
+        protected MongoTestContext MongoContext { get; private set; }
         protected EntityStore EntityStore { get; private set; }
 
         protected QueryTestFixture()
         {
-            MongoContext = new MongoContext();
+            MongoContext = new MongoTestContext();
             EntityStore = new EntityStore(MongoContext);
         }
 
