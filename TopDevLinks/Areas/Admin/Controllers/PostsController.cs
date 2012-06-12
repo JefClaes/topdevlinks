@@ -57,5 +57,14 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [SetTempDataWhenModelStateInvalid]
+        public ActionResult Delete(string id)
+        {
+            Execute(new DeleteLinkCommand(id));
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -151,6 +151,7 @@
     <Compile Include="Commands\AddLinkToUnpublishedPostCommand.cs" />
     <Compile Include="Commands\AddUserCommand.cs" />
     <Compile Include="Commands\DeactivateUserCommand.cs" />
+    <Compile Include="Commands\DeleteLinkCommand.cs" />
     <Compile Include="Commands\EnsureUpcomingPostExistsCommand.cs" />
     <Compile Include="Commands\PublishCommand.cs" />
     <Compile Include="Commands\UpdateCategoryCommand.cs" />

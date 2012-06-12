@@ -63,6 +63,7 @@
     <Compile Include="Commands\AddLinkToUnpublishedPostCommandTest.cs" />
     <Compile Include="Commands\CommandTestFixture.cs" />
     <Compile Include="Commands\DeactivateUserCommandTest.cs" />
+    <Compile Include="Commands\DeleteLinkCommandTests.cs" />
     <Compile Include="Commands\EnsureUpcomingPostExistsCommandTests.cs" />
     <Compile Include="Commands\PublishCommandTest.cs" />
     <Compile Include="Controllers\DisconnectedAccountControllerTests.cs" />

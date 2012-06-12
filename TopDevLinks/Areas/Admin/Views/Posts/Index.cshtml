@@ -71,7 +71,7 @@
                                     <button type="submit" class="btn btn-warning">Flag</button>
                                 }
                             }
-                            @using (Html.BeginForm("", "", new { id = link.Id }, FormMethod.Post))
+                            @using (Html.BeginForm("Delete", "Posts", new { id = link.Id }, FormMethod.Post))
                             {
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             }
@@ -88,7 +88,7 @@
     @using (Html.BeginForm("Publish", "Posts", FormMethod.Post))
     {
         <div class="span3 container-publish">            
-            <button type="submit" class="btn btn-warning">Publish</button>
+            <button type="submit" class="btn btn-primary">Publish</button>
         </div>
     }
 </div>

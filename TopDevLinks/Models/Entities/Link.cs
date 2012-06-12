@@ -4,7 +4,7 @@ using MongoDB.Bson;
 namespace TopDevLinks.Models.Entities
 {
     public class Link : Entity, IEquatable<Link>
-    {
+    {        
         public Uri Uri { get; private set; }
         public string Title { get; private set; }
         public ObjectId CategoryId { get; private set; }
@@ -18,6 +18,7 @@ namespace TopDevLinks.Models.Entities
             if (categoryId == ObjectId.Empty) throw new ArgumentException("categoryId must have a value", "categoryId");
             if (userId == ObjectId.Empty) throw new ArgumentException("userId must have a value", "userId");
 
+            Id = ObjectId.GenerateNewId();
             Uri = uri;
             Title = title;
             CategoryId = categoryId;
@@ -34,7 +35,10 @@ namespace TopDevLinks.Models.Entities
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other.Uri, Uri) && Equals(other.Title, Title) && other.CategoryId.Equals(CategoryId) && other.UserId.Equals(UserId);
+            return Equals(other.Uri, Uri) && 
+                    Equals(other.Title, Title) && 
+                    other.CategoryId.Equals(CategoryId) && 
+                    other.UserId.Equals(UserId);
         }
 
         public override bool Equals(object obj)

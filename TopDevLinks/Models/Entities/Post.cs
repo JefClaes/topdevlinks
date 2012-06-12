@@ -18,7 +18,7 @@ namespace TopDevLinks.Models.Entities
         }
 
         public void AddLink(Link link)
-        {
+        {            
             TypedLinks.Add(link);
         }
 
