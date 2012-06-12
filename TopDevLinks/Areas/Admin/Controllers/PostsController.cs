@@ -60,9 +60,9 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
         [HttpPost]
         [SetTempDataWhenModelStateInvalid]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string postId, string linkId)
         {
-            Execute(new DeleteLinkCommand(id));
+            Execute(new DeleteLinkCommand(postId, linkId));
 
             return RedirectToAction("Index");
         }

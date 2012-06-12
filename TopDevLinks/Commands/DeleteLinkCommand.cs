@@ -11,19 +11,20 @@ namespace TopDevLinks.Commands
 {
     public class DeleteLinkCommand : Command
     {
-        private string _id;
+        private string _postId;
+        private string _linkId;
 
-        public DeleteLinkCommand(string id)
+        public DeleteLinkCommand(string postId, string linkId)
         {
-            _id = id;
+            _postId = postId;
+            _linkId = linkId;
         }
 
         public override void Execute()
         {
-            var post = MongoContext.GetCollection<Post>()
-                .FindOne(Query.EQ("Links._id", new ObjectId(_id)));
+            var post = EntityStore.Get<Post>(new ObjectId(_postId));               
             var link = post.Links
-                .Where(l => Convert.ToString(l.Id) == _id)
+                .Where(l => Convert.ToString(l.Id) == _linkId)
                 .First();
 
             post.RemoveLink(link);

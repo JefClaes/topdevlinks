@@ -42,7 +42,9 @@ namespace TopDevLinks.Tests.Commands
         [Test]
         public void Command_deletes_link()
         {
-            Execute(new DeleteLinkCommand(Convert.ToString(_firstLinkAdded.Id)));
+            Execute(new DeleteLinkCommand(
+                Convert.ToString(_firstPost.Id),
+                Convert.ToString(_firstLinkAdded.Id)));
 
             var post = MongoContext.GetCollection<Post>().FindOneById(_firstPost.Id);
 
