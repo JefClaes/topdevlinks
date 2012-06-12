@@ -71,7 +71,7 @@
                                     <button type="submit" class="btn btn-warning">Flag</button>
                                 }
                             }
-                            @using (Html.BeginForm("Delete", "Posts", new { id = link.Id }, FormMethod.Post))
+                            @using (Html.BeginForm("Delete", "Posts", new { postId = Model.UpcomingPost.Id ,linkId = link.Id }, FormMethod.Post))
                             {
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             }
