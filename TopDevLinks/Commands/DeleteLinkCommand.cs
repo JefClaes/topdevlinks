@@ -28,7 +28,7 @@ namespace TopDevLinks.Commands
 
             post.RemoveLink(link);
 
-            MongoContext.GetCollection<Post>().Save(post);            
+            EntityStore.Save(post);            
         }
     }
 }

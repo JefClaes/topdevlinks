@@ -18,15 +18,10 @@ namespace TopDevLinks.Tests.Commands
         [SetUp]
         public void SetUp()
         {
-            MongoContext.GetCollection<Post>().Drop();
-            MongoContext.GetCollection<Category>().Drop();
-            MongoContext.GetCollection<User>().Drop();
+            DropCollections();
 
-            var generalCategory = new Category() { Name = "General", Priority = 0 };
-            MongoContext.GetCollection<Category>().Save(generalCategory);
-
-            var user = new User("JefClaes", "jef.claes@gmail.com");
-            MongoContext.GetCollection<User>().Save(user);
+            var generalCategory = AddGeneralCategory();
+            var user = AddUser();
 
             _firstPost = new Post();
             _firstPost.Published = false;
@@ -42,7 +37,7 @@ namespace TopDevLinks.Tests.Commands
 
             MongoContext.GetCollection<Post>().Save(_firstPost);
             MongoContext.GetCollection<Post>().Save(anotherPost);
-        }
+        }       
 
         [Test]
         public void Command_deletes_link()
@@ -53,5 +48,28 @@ namespace TopDevLinks.Tests.Commands
 
             Assert.IsTrue(post.Links.Any(l => l.Id != _firstPost.Id));
         }
+
+        private void DropCollections()
+        {
+            MongoContext.GetCollection<Post>().Drop();
+            MongoContext.GetCollection<Category>().Drop();
+            MongoContext.GetCollection<User>().Drop();
+        }
+
+        private User AddUser()
+        {
+            var user = new User("JefClaes", "jef.claes@gmail.com");
+            MongoContext.GetCollection<User>().Save(user);
+
+            return user;
+        }
+
+        private Category AddGeneralCategory()
+        {
+            var generalCategory = new Category() { Name = "General", Priority = 0 };
+            MongoContext.GetCollection<Category>().Save(generalCategory);
+
+            return generalCategory;
+        }       
     }
 }
