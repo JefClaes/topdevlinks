@@ -66,6 +66,7 @@
     <Compile Include="Commands\DeleteLinkCommandTests.cs" />
     <Compile Include="Commands\EnsureUpcomingPostExistsCommandTests.cs" />
     <Compile Include="Commands\PublishCommandTest.cs" />
+    <Compile Include="Commands\ToggleLinkFlagCommandTest.cs" />
     <Compile Include="Controllers\DisconnectedAccountControllerTests.cs" />
     <Compile Include="Controllers\DisconnectedControllerTestFixture.cs" />
     <Compile Include="Entities\UserTests.cs" />

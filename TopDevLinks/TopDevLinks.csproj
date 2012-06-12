@@ -154,6 +154,7 @@
     <Compile Include="Commands\DeleteLinkCommand.cs" />
     <Compile Include="Commands\EnsureUpcomingPostExistsCommand.cs" />
     <Compile Include="Commands\PublishCommand.cs" />
+    <Compile Include="Commands\ToggleLinkFlagCommand.cs" />
     <Compile Include="Commands\UpdateCategoryCommand.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -60,9 +60,18 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
         [HttpPost]
         [SetTempDataWhenModelStateInvalid]
-        public ActionResult Delete(string postId, string linkId)
+        public ActionResult DeleteLink(string postId, string linkId)
         {
             Execute(new DeleteLinkCommand(postId, linkId));
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [SetTempDataWhenModelStateInvalid]
+        public ActionResult ToggleFlagLink(string postId, string linkId)
+        {
+            Execute(new ToggleLinkFlagCommand(postId, linkId));
 
             return RedirectToAction("Index");
         }

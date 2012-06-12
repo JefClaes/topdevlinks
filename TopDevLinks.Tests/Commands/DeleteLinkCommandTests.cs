@@ -46,7 +46,7 @@ namespace TopDevLinks.Tests.Commands
                 Convert.ToString(_firstPost.Id),
                 Convert.ToString(_firstLinkAdded.Id)));
 
-            var post = MongoContext.GetCollection<Post>().FindOneById(_firstPost.Id);
+            var post = EntityStore.Get<Post>(_firstPost.Id);
 
             Assert.IsTrue(post.Links.Any(l => l.Id != _firstPost.Id));
         }
