@@ -35,10 +35,7 @@ namespace TopDevLinks.Models.Entities
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other.Uri, Uri) && 
-                    Equals(other.Title, Title) && 
-                    other.CategoryId.Equals(CategoryId) && 
-                    other.UserId.Equals(UserId);
+            return other.Id == this.Id;
         }
 
         public override bool Equals(object obj)
@@ -57,6 +54,7 @@ namespace TopDevLinks.Models.Entities
                 result = (result * 397) ^ (Title != null ? Title.GetHashCode() : 0);
                 result = (result * 397) ^ CategoryId.GetHashCode();
                 result = (result * 397) ^ UserId.GetHashCode();
+                result = (result * 397) ^ Flagged.GetHashCode();
                 return result;
             }
         }

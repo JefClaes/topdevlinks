@@ -8,7 +8,8 @@ namespace TopDevLinks.Commands
     {
         public override void Execute()
         {
-            var upcomingPost = MongoContext.GetCollection<Post>().FindOne(Query.EQ("Published", false));
+            var upcomingPost = MongoContext.GetCollection<Post>()
+                .FindOne(Query.EQ("Published", false));
 
             upcomingPost.Published = true;
             upcomingPost.PublishDate = DateTimeProvider.Now;
