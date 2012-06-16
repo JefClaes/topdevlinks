@@ -3,12 +3,14 @@ using TopDevLinks.Areas.Admin.Models.ViewModels;
 using TopDevLinks.Commands;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Queries;
+using TopDevLinks.Infrastructure.Web;
 
 namespace TopDevLinks.Areas.Admin.Controllers
 {
     [Authorize]
     public class UsersController : MongoContextController
     {
+        [RestoreModelStateFromTempData]
         public ActionResult Index()
         {
             ViewData.Model = new UsersIndexViewModel(Execute(new GetUsersQuery()));
@@ -17,7 +19,8 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(UsersIndexViewModel inputModel)
+        [SetTempDataWhenModelStateInvalid]
+        public ActionResult AddUser(UsersIndexViewModel inputModel)
         {
             var model = new UsersIndexViewModel();
 
@@ -30,7 +33,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
             model.Users = Execute(new GetUsersQuery());
             ViewData.Model = model;
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

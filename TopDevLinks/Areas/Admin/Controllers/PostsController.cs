@@ -28,7 +28,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
         [HttpPost]
         [SetTempDataWhenModelStateInvalid]
-        public ActionResult Index(PostsIndexViewModel inputModel)
+        public ActionResult AddLink(PostsIndexViewModel inputModel)
         {
             Uri url;
             if (!Uri.TryCreate(inputModel.Url, UriKind.Absolute, out url))
@@ -60,7 +60,6 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [SetTempDataWhenModelStateInvalid]
         public ActionResult DeleteLink(string postId, string linkId)
         {
             Execute(new DeleteLinkCommand(postId, linkId));
@@ -69,7 +68,6 @@ namespace TopDevLinks.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [SetTempDataWhenModelStateInvalid]
         public ActionResult ToggleFlagLink(string postId, string linkId)
         {
             Execute(new ToggleLinkFlagCommand(postId, linkId));

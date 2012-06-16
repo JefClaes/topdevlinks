@@ -26,7 +26,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
         [HttpPost]
         [SetTempDataWhenModelStateInvalid]
-        public ActionResult Index(CategoriesIndexViewModel inputModel)
+        public ActionResult AddCategory(CategoriesIndexViewModel inputModel)
         {
             if (ModelState.IsValid)
             {
