@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using TopDevLinks.Areas.Admin.Models.ViewModels;
-using TopDevLinks.Commands;
+using TopDevLinks.Commands.Users;
 using TopDevLinks.Infrastructure;
-using TopDevLinks.Queries;
 using TopDevLinks.Infrastructure.Web;
+using TopDevLinks.Queries;
 
 namespace TopDevLinks.Areas.Admin.Controllers
 {

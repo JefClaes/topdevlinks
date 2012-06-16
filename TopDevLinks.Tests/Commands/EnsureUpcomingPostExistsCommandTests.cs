@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using TopDevLinks.Commands;
 using TopDevLinks.Models.Entities;
+using TopDevLinks.Commands.Posts;
 
 namespace TopDevLinks.Tests.Commands
 {

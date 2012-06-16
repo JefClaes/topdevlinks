@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using MongoDB.Driver.Builders;
 using NUnit.Framework;
+using TopDevLinks.Commands.Posts;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
-using TopDevLinks.Commands;
-using MongoDB.Driver.Builders;
 
 namespace TopDevLinks.Tests.Commands
 {

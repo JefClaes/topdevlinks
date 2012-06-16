@@ -6,7 +6,7 @@ using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 using MongoDB.Driver.Builders;
 
-namespace TopDevLinks.Commands
+namespace TopDevLinks.Commands.Posts
 {
     public class AddLinkToUnpublishedPostCommand : Command
     {

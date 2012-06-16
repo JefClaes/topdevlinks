@@ -4,6 +4,7 @@ using TopDevLinks.Models.Entities;
 using TopDevLinks.Commands;
 using MongoDB.Driver.Builders;
 using MongoDB.Bson;
+using TopDevLinks.Commands.Posts;
 
 namespace TopDevLinks.Tests.Commands
 {

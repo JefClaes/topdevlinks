@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TopDevLinks.Models.Entities;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Commands;
+using TopDevLinks.Commands.Posts;
 
 namespace TopDevLinks.Tests.Commands
 {

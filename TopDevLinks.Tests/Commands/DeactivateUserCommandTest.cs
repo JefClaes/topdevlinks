@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using TopDevLinks.Commands;
 using TopDevLinks.Models.Entities;
+using TopDevLinks.Commands.Users;
 
 namespace TopDevLinks.Tests.Commands
 {

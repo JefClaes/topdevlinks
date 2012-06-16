@@ -5,7 +5,7 @@ using System.Web;
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 
-namespace TopDevLinks.Commands
+namespace TopDevLinks.Commands.Users
 {
     public class AddUserCommand : Command
     {

@@ -2,7 +2,7 @@
 using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 
-namespace TopDevLinks.Commands
+namespace TopDevLinks.Commands.Categories
 {
     public class UpdateCategoryCommand : Command
     {

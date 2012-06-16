@@ -6,7 +6,7 @@ using TopDevLinks.Infrastructure;
 using TopDevLinks.Models.Entities;
 using MongoDB.Bson;
 
-namespace TopDevLinks.Commands
+namespace TopDevLinks.Commands.Users
 {
     public class DeactivateUserCommand : Command
     {
