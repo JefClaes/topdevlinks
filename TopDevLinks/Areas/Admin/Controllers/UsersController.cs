@@ -20,7 +20,7 @@ namespace TopDevLinks.Areas.Admin.Controllers
 
         [HttpPost]
         [SetTempDataWhenModelStateInvalid]
-        public ActionResult AddUser(UsersIndexViewModel inputModel)
+        public ActionResult Add(UsersIndexViewModel inputModel)
         {
             var model = new UsersIndexViewModel();
 
